@@ -1,4 +1,0 @@
-ProjectDawn
-===========
-
-Project Dawn REPO
