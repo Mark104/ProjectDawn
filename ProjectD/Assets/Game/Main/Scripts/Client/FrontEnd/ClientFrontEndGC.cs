@@ -69,6 +69,11 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 		
 		if(currentState == AccountState.LOGEDIN)
 		{
+			Camera.main.transform.eulerAngles = new Vector3(-(Input.mousePosition.y / Screen.height) * 30, 
+												(Input.mousePosition.x / Screen.width) * 30,
+												0);
+			
+			
 				
 			#region Release Navigation
 			if(Input.GetMouseButtonDown(0) && currentSelection == ReleaseSelection.NONE)
@@ -236,6 +241,7 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 				{
 					//Lobby.RPC("AttemptLogin",LobbyPeer.lobby,username,password);
 					AccountManager.LogIn(username,password);
+					print ("blargle");
 				}
 	
 			GUILayout.EndHorizontal();
