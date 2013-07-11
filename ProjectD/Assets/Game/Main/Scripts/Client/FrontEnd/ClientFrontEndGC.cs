@@ -35,6 +35,9 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 	double startTime;
 	
 	IEnumerable<ServerInfo> servers;
+	
+	Vector2 scrollPositionModules = Vector2.zero;
+	Vector2 scrollPositionItems = Vector2.zero;
 
 	// Use this for initialization
 	void Start () {
@@ -69,29 +72,38 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 		
 		if(currentState == AccountState.LOGEDIN)
 		{
-			Camera.main.transform.eulerAngles = new Vector3(-(Input.mousePosition.y / Screen.height) * 30, 
-												(Input.mousePosition.x / Screen.width) * 30,
-												0);
 			
 			
-				
-			#region Release Navigation
-			if(Input.GetMouseButtonDown(0) && currentSelection == ReleaseSelection.NONE)
+			if(currentSelection == ReleaseSelection.NONE)
 			{
-				RaycastHit hit;
+			
+			float xPosition = (Input.mousePosition.x - (Screen.width * 0.5f)) / Screen.width;
+			float yPosition = (Input.mousePosition.y - (Screen.height * 0.5f)) / Screen.height;
+			
+			Camera.main.transform.eulerAngles = new Vector3(-(20 * yPosition), 
+												20 * xPosition,
+												0);
 				
-				Ray raycast = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x,Input.mousePosition.y,0));
-
-				if (Physics.Raycast(Camera.main.transform.position,raycast.direction,out hit,200,lm))
+				
+					
+				#region Release Navigation
+				if(Input.GetMouseButtonDown(0))
 				{
-					if(hit.collider.gameObject.name == "ShipHanger")
+					RaycastHit hit;
+					
+					Ray raycast = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x,Input.mousePosition.y,0));
+	
+					if (Physics.Raycast(Camera.main.transform.position,raycast.direction,out hit,200,lm))
 					{
-						currentSelection = ReleaseSelection.SHIPCOMBAT;
-						Camera.main.animation.Play();
+						if(hit.collider.gameObject.name == "ShipHanger")
+						{
+							currentSelection = ReleaseSelection.SHIPCOMBAT;
+							Camera.main.animation.Play();
+						}
 					}
 				}
+				#endregion
 			}
-			#endregion	
 			
 		}
 	
@@ -111,7 +123,36 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 				if(currentSelection == ReleaseSelection.SHIPCOMBAT)
 				{
 					
-	
+					GUILayout.BeginArea(new Rect(5,60,200,600));
+					
+						scrollPositionModules = GUILayout.BeginScrollView(scrollPositionModules,GUILayout.Width(200),GUILayout.Height(600));
+					
+							for(int i = 0; i < 20;i++)
+							{
+								GUILayout.Button("Test",GUILayout.Height(50));
+								
+							}
+							
+						
+						GUILayout.EndScrollView();
+						
+					GUILayout.EndArea();
+					
+					GUILayout.BeginArea(new Rect(Screen.width - 205,60,200,600));
+					
+						scrollPositionItems = GUILayout.BeginScrollView(scrollPositionItems,GUILayout.Width(200),GUILayout.Height(600));
+					
+							for(int i = 0; i < 20;i++)
+							{
+								GUILayout.Button("Test",GUILayout.Height(50));
+								
+							}
+							
+						
+						GUILayout.EndScrollView();
+						
+					GUILayout.EndArea();
+										
 					if (GUI.Button(new Rect((Screen.width * 0.5f) - 75,5,150,50),"PLAY"))
 					{
 						servers = ServerRegistry.GetServers();
@@ -126,7 +167,7 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 							SendMessage("AddMessage","Connecting to game server");				
 						}
 					}
-						
+					
 				}
 			}
 			else
