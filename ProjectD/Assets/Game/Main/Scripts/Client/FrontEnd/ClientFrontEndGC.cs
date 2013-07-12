@@ -38,6 +38,11 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 	
 	Vector2 scrollPositionModules = Vector2.zero;
 	Vector2 scrollPositionItems = Vector2.zero;
+	
+	int playerCount = 0;
+	int serverCount = 0;
+	
+	float nextUpdate = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -59,7 +64,6 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 		
 		AccountManager.OnAccountRegistered += OnAccountRegistered;
 		AccountManager.OnRegisterFailed += OnRegisterFailed;
-		
 		AccountManager.OnAccountLoggedIn += OnAccountLoggedIn;
 		AccountManager.OnAccountLoggedOut += OnAccoutLogedOut;
 		AccountManager.OnLogInFailed += OnAccountLoginFail;
@@ -72,6 +76,12 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 		
 		if(currentState == AccountState.LOGEDIN)
 		{
+			
+			if(nextUpdate < Time.time)
+			{
+				Lobby.RPC("RequestLoginInfo",LobbyPeer.lobby);
+				nextUpdate = Time.time + 3;	
+			}
 			
 			
 			if(currentSelection == ReleaseSelection.NONE)
@@ -292,6 +302,13 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 		GUILayout.EndVertical();
         
     }
+	
+	[RPC]
+	void GetListings(int _Players,int _Servers)
+	{
+		
+		
+	}
 	
 	[RPC]
 	void StartGame()

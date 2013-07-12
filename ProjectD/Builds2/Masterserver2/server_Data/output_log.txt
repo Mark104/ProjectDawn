@@ -25,7 +25,7 @@ Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\Maste
 Loading C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\Masterserver2\server_Data\Managed\uLink.dll into Unity Child Domain
 Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\Masterserver2\server_Data\Managed\uLobby.dll (this message is harmless)
 Loading C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\Masterserver2\server_Data\Managed\uLobby.dll into Unity Child Domain
-- Completed reload, in  0.321 seconds
+- Completed reload, in  0.058 seconds
 desktop: 1920x1080 60Hz; virtual: 3520x1080 at -1600,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -43,11 +43,35 @@ Node {Host: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com', Port: 8087} is 
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Request to register account with name  failed - name already registered
+No receiver found for RPC 'RequestLoginInfo'
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Initializing uGameDB 1.2.1 Broccoli Pie (2012-10-04)
+No receiver found for RPC 'RequestLoginInfo'
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+No receiver found for RPC 'RequestLoginInfo'
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+No receiver found for RPC 'RequestLoginInfo'
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+No receiver found for RPC 'RequestLoginInfo'
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+No receiver found for RPC 'RequestLoginInfo'
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+No receiver found for RPC 'RequestLoginInfo'
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+No receiver found for RPC 'RequestLoginInfo'
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 

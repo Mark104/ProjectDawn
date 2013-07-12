@@ -64,6 +64,13 @@ public class MainMasterServer : MonoBehaviour {
 		SendMessage("AddMessage","Server Removed " +  dataCopy.ReadString() + " on " + server.host);
 	}
 	
+	[RPC]
+	public void RequestLoginInfo(LobbyMessageInfo info)
+	{
+	
+		Lobby.RPC(
+	}
+	
 	
 	[RPC]
 	public void AttemptRegister (string _Username, string _Password,LobbyMessageInfo info)
