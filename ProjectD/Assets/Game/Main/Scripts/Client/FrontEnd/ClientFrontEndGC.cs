@@ -178,6 +178,11 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 						}
 					}
 					
+					if (GUI.Button(new Rect((Screen.width * 0.8f) - 75,5,150,50),"Launch Server"))
+					{
+						Lobby.RPC("AttemptToLaunchServer",LobbyPeer.lobby);
+					}
+					
 				}
 			}
 			else
