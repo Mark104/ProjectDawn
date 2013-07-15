@@ -38,10 +38,24 @@ public class MainServerController : uLink.MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
+		Application.runInBackground = true;
+		
+		Lobby.AddListener(this);
+	
+		uLobby.LobbyConnectionError handle = Lobby.ConnectAsServer(Settings.ServerIP,7050);
+		SendDebugInfo("MasterServer connect state " + handle.ToString());
+	
+		
 		curentServerState = ServerState.NONE;
 		
 		
 	
+	}
+	
+	void OnDestroy() {
+		
+		Lobby.RPC("RemoveServerFromDebug",LobbyPeer.lobby,networkView.owner.id);
+		
 	}
 	
 	// Update is called once per frame
@@ -54,21 +68,21 @@ public class MainServerController : uLink.MonoBehaviour {
 				
 				foreach(KeyValuePair<int,NetworkProfile> val in redTeam)
 				{
-					SendMessage("AddMessage","Spawning " + val.Value.name + " for red");
+					SendDebugInfo("Spawning " + val.Value.name + " for red");
 					GameObject tmp = uLink.Network.Instantiate(val.Value.player,proxyShip,ownerShip,creatorShip,new Vector3(0,0,-250 + Random.Range(-20,20)),Quaternion.identity,5);
 					tmp.name = "" + val.Value.player.id;
 				}
 				
 				foreach(KeyValuePair<int,NetworkProfile> val in blueTeam)
 				{
-					SendMessage("AddMessage","Spawning " + val.Value.name + " for blue");
+					SendDebugInfo("Spawning " + val.Value.name + " for blue");
 					GameObject tmp = uLink.Network.Instantiate(val.Value.player,proxyShip,ownerShip,creatorShip,new Vector3(0,0,-250 + Random.Range(-20,20)),Quaternion.identity,5);
 					tmp.name = "" + val.Value.player.id;
 				}
 				
 				foreach(KeyValuePair<int,NetworkProfile> val in greenTeam)
 				{
-					SendMessage("AddMessage","Spawning " + val.Value.name + " for green");
+					SendDebugInfo("Spawning " + val.Value.name + " for green");
 					GameObject tmp = uLink.Network.Instantiate(val.Value.player,proxyShip,ownerShip,creatorShip,new Vector3(0,0,-250 + Random.Range(-20,20)),Quaternion.identity,5);
 					tmp.name = "" + val.Value.player.id;
 				}
@@ -81,7 +95,7 @@ public class MainServerController : uLink.MonoBehaviour {
 		
 		if((gamestartTimer - uLink.Network.time) <= 0 && curentServerState == ServerState.LOBBY)
 		{
-			SendMessage("AddMessage","Game Started");
+			SendDebugInfo("Game Started");
 			
 			networkView.RPC("StartGame",uLink.RPCMode.All);
 			
@@ -102,6 +116,12 @@ public class MainServerController : uLink.MonoBehaviour {
 		
 	}
 	
+	public void SendDebugInfo(string _Message)
+	{
+		print ("Sent Message");
+		Lobby.RPC("PassOnDebugInfo",LobbyPeer.lobby,_Message,networkView.owner.id);
+	}
+	
 	[RPC]	
 	void UserConnected (string _Name,AccountID _ID,uLink.NetworkMessageInfo _Info)
 	{
@@ -113,7 +133,7 @@ public class MainServerController : uLink.MonoBehaviour {
 		
 		unassignedPlayers.Add(_Info.sender.id,tempProf);
 		
-		SendMessage("AddMessage",_Name + " added to unassigned");
+		SendDebugInfo(_Name + " added to unassigned");
 		
 	}
 	
@@ -165,7 +185,7 @@ public class MainServerController : uLink.MonoBehaviour {
 				}
 			}
 			
-			SendMessage("AddMessage",tmpProfile.name + " added to red, moved from " + movedFrom);
+			SendDebugInfo(tmpProfile.name + " added to red, moved from " + movedFrom);
 			
 			
 			redTeam.Add(_Info.sender.id,tmpProfile);
@@ -220,13 +240,13 @@ public class MainServerController : uLink.MonoBehaviour {
 					}
 					else
 					{
-						SendMessage("AddMessage","User is already in blue!");
+						SendDebugInfo("User is already in blue!");
 						return;	
 					}
 				}
 			}
 			
-			SendMessage("AddMessage",tmpProfile.name + " added to blue, moved from " + movedFrom);
+			SendDebugInfo(tmpProfile.name + " added to blue, moved from " + movedFrom);
 			
 			
 			blueTeam.Add(_Info.sender.id,tmpProfile);
@@ -285,7 +305,7 @@ public class MainServerController : uLink.MonoBehaviour {
 				}
 			}
 			
-			SendMessage("AddMessage",tmpProfile.name + " added to green, moved from " + movedFrom);
+			SendDebugInfo(tmpProfile.name + " added to green, moved from " + movedFrom);
 			
 			greenTeam.Add(_Info.sender.id,tmpProfile);
 				
@@ -301,7 +321,7 @@ public class MainServerController : uLink.MonoBehaviour {
 			
 			gamestartTimer = uLink.Network.time + gamestartTimer;
 			
-			SendMessage("AddMessage","Player Joined" + player.id);
+			SendDebugInfo("Player Joined" + player.id);
 			
 			networkView.RPC("StartTimer",player,gamestartTimer);
 		}
@@ -315,9 +335,21 @@ public class MainServerController : uLink.MonoBehaviour {
 	
 	void uLink_OnConnectedToServer()
 	{
-		SendMessage("AddMessage","Connected to server");
+		SendDebugInfo("Connected to server");
 		
 	}
+	private void uLobby_OnConnected()
+	{
+		SendDebugInfo("Connected to MasterServer");
 	
+		string name = "Main Game Server";
+		
+		ServerRegistry.AddServer(7100,name);
+	}
+	
+	private void uLobby_OnServerAdded(ServerInfo server)
+	{
+		SendDebugInfo("Server Connected " + server.data.ToString());
+	}
 	
 }

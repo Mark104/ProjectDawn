@@ -54,6 +54,7 @@
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\ClientFireControl.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\Guns\BasicCannon.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\Source\Armament.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\DebugServer\DebugServerController.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Effects\CreateExplosion.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Effects\DestroyOnFinish.cs" />
      <Compile Include="Assets\Game\Main\Scripts\MasterServer\Main\MainMasterServer.cs" />
@@ -64,6 +65,7 @@
      <Compile Include="Assets\Game\Main\Scripts\Server\GameLogic\Weapons\Source\ServerFireControl.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Server\Lobby\ServerMasterServerConnection.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Server\Network\MainServerController.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Server\ShipBuilder\ShipBuilder.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Sources\Entitys\BasicFighter.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Sources\Entitys\Source\Entity.cs" />
      <Compile Include="Assets\Game\Main\Scripts\UI\Meter.cs" />

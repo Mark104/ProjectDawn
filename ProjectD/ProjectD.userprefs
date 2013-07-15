@@ -1,10 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Main\Scripts\Client\FrontEnd\ClientFrontEndGC.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Main\Scripts\Server\ShipBuilder\ShipBuilder.cs">
     <Files>
-      <File FileName="Assets\Game\Main\Scripts\Client\FrontEnd\ClientFrontEndGC.cs" Line="146" Column="7" />
+      <File FileName="Assets\Game\Main\Scripts\Server\ShipBuilder\ShipBuilder.cs" Line="25" Column="3" />
+      <File FileName="Assets\Game\Main\Scripts\MasterServer\Main\MainMasterServer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Main\Scripts\Client\FrontEnd\ClientFrontEndGC.cs" Line="1" Column="1" />
       <File FileName="Assets\Game\Settings\Settings.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game\Main\Scripts\MasterServer\Main\MainMasterServer.cs" Line="71" Column="13" />
+      <File FileName="Assets\Game\Main\Scripts\DebugServer\DebugServerController.cs" Line="96" Column="7" />
+      <File FileName="Assets\Game\Main\Scripts\Server\Network\MainServerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Main\Scripts\Utility\Console.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Main\Scripts\Server\Lobby\ServerMasterServerConnection.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
