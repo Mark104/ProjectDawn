@@ -21,6 +21,8 @@ public class Console : MonoBehaviour {
 	
 	public void AddMessage(string _MsgToAdd) {
 		
+		Debug.Log(_MsgToAdd);
+		
 		msgList.Add(_MsgToAdd);
 		
 		inc++;

@@ -68,7 +68,7 @@ public class MainMasterServer : MonoBehaviour {
 	public void RequestLoginInfo(LobbyMessageInfo info)
 	{
 	
-		Lobby.RPC(
+	
 	}
 	
 	

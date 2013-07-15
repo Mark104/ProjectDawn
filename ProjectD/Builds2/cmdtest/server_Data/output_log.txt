@@ -1,0 +1,48 @@
+Initialize engine version: 4.1.5f1 (ed5ea3281df6)
+Forcing GfxDevice: 4
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\Jboy.Core.dll (this message is harmless)
+Loading C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\Jboy.Core.dll into Unity Child Domain
+Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\Jboy.dll (this message is harmless)
+Loading C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\Jboy.dll into Unity Child Domain
+Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\uGameDB.dll (this message is harmless)
+Loading C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\uGameDB.dll into Unity Child Domain
+Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\uLink.dll (this message is harmless)
+Loading C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\uLink.dll into Unity Child Domain
+Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\uLobby.dll (this message is harmless)
+Loading C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\uLobby.dll into Unity Child Domain
+- Completed reload, in  0.055 seconds
+Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectD\Builds2\cmdtest\server_Data\Managed\System.Core.dll (this message is harmless)
+Initializing uGameDB 1.2.1 Broccoli Pie (2012-10-04)
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Sending ping to Node {Host: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com', Port: 8087} ...
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+MasterServer Initialized 
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+MasterServer init NoError
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Node {Host: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com', Port: 8087} is online.
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
