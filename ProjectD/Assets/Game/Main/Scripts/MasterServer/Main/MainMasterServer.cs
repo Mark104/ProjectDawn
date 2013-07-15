@@ -119,14 +119,12 @@ public class MainMasterServer : MonoBehaviour {
 		
 	}
 	
-<<<<<<< HEAD
-	
-=======
+
 	[RPC]
 	public void RemoveServerFromDebug(int _Key)
 	{
 		Lobby.RPC("RemoveServerEntity",debugServer,_Key);
->>>>>>> 87e88f67dae7af36c76371d526db825447552375
+
 	}
 	
 	[RPC]
