@@ -1,0 +1,30 @@
+Main Objectives:
+
+
+
+
+
+
+Add a targeting system to show health / shields
+
+Add 2d radar system, triangles to show elevation inside a circle
+
+add shields just the logic, no visual but with a 1% per sec regen
+
+add shield % gui elements 
+
+Impliment hanger view / ship customisation
+
+impliment a skill module
+
+
+
+
+
+
+
+
+
+
+
+Ensure code is as modular as possible so that we can use this later on!
