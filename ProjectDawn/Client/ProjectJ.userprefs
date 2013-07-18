@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Settings\Settings.cs">
+    <Files>
+      <File FileName="Assets\Game\Main\Scripts\Client\FrontEnd\ClientFrontEndGC.cs" Line="254" Column="3" />
+      <File FileName="Assets\Game\Main\Scripts\MasterServer\Main\MainMasterServer.cs" Line="76" Column="26" />
+      <File FileName="Assets\Game\Main\Scripts\Server\Lobby\ServerMasterServerConnection.cs" Line="27" Column="16" />
+      <File FileName="Assets\Game\Main\Scripts\Server\Network\MainServerController.cs" Line="21" Column="28" />
+      <File FileName="Assets\Game\Main\Scripts\Utility\Console.cs" Line="33" Column="4" />
+      <File FileName="Assets\Scripts\ShipController.cs" Line="95" Column="55" />
+      <File FileName="Assets\Game\Settings\Settings.cs" Line="12" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
