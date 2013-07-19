@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Main\Scripts\Sources\Armament.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Main\Scripts\Server\Network\MainServerController.cs">
     <Files>
-      <File FileName="Assets\Game\Main\Scripts\Sources\Armament.cs" Line="31" Column="32" />
+      <File FileName="Assets\Game\Settings\Settings.cs" Line="8" Column="46" />
+      <File FileName="Assets\Game\Main\Scripts\Server\Network\MainServerController.cs" Line="76" Column="65" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
