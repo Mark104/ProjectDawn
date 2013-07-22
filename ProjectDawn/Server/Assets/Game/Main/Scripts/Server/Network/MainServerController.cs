@@ -70,10 +70,13 @@ public class MainServerController : uLink.MonoBehaviour {
 				{
 					SendDebugInfo("Spawning " + val.Value.name + " for red");
 					
+					Hashtable tmpTable = new Hashtable();
+					
+					tmpTable.Add("msg","HELLO");
 					
 					//GameObject tmp = uLink.Network.Instantiate(val.Value.player,proxyShip,ownerShip,creatorShip,new Vector3(0,0,-250 + Random.Range(-20,20)),Quaternion.identity,5);
 					
-					GameObject tmp = uLink.Network.Instantiate(val.Value.player,"ClientUnpacker","ClientUnpacker","ServerUnpacker",new Vector3(0,0,-250),Quaternion.identity,5);
+					GameObject tmp = uLink.Network.Instantiate(val.Value.player,"ClientUnpacker","ClientUnpacker","ServerUnpacker",new Vector3(0,0,-250),Quaternion.identity,5,tmpTable);
 		
 					
 					tmp.name = "" + val.Value.player.id;

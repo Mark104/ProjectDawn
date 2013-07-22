@@ -1,0 +1,4 @@
+Add Unpacking system (Read Notes)
+Add Ship_Unpacker
+Add ingame command console for client (basically a top left hideable window that people can enter commands in so servers can be restarted and such)
+Put game on windows server

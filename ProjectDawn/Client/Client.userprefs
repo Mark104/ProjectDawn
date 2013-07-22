@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Settings\Settings.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Main\Scripts\UnPackers\UnpackerSelector.cs">
     <Files>
       <File FileName="Assets\Game\Settings\Settings.cs" Line="6" Column="2" />
+      <File FileName="Assets\Game\Main\Scripts\UnPackers\UnpackerSelector.cs" Line="22" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

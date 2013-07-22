@@ -25,7 +25,7 @@ Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectDawn\Builds\Mas
 Loading C:\Users\AgentDash\Desktop\ProjectDawn\ProjectDawn\Builds\MasterServer_Data\Managed\uLink.dll into Unity Child Domain
 Platform assembly: C:\Users\AgentDash\Desktop\ProjectDawn\ProjectDawn\Builds\MasterServer_Data\Managed\uLobby.dll (this message is harmless)
 Loading C:\Users\AgentDash\Desktop\ProjectDawn\ProjectDawn\Builds\MasterServer_Data\Managed\uLobby.dll into Unity Child Domain
-- Completed reload, in  0.210 seconds
+- Completed reload, in  0.259 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 desktop: 1920x1080 60Hz; virtual: 3520x1080 at -1600,0
@@ -84,38 +84,6 @@ Node {Host: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com', Port: 8087} is 
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message Connected to MasterServer with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Server Connected Main Game Server on 192.168.0.172 with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Account loged in Name: , ID: N8d8zyaw, data: [none] with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Player Joined1 with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message  added to unassigned with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Game Started with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Server Removed Main Game Server on 192.168.0.172 with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Account loged out Name: , ID: N8d8zyaw, data: [none] with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
 Storing message Account loged in Name: , ID: N8d8zyaw, data: [none] with key 0
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
@@ -176,7 +144,7 @@ Storing message  added to unassigned with key 65535
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message  added to blue, moved from Unassigned with key 65535
+Storing message  added to red, moved from Unassigned with key 65535
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
@@ -184,7 +152,91 @@ Storing message Game Started with key 65535
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message Spawning  for blue with key 65535
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
+Storing message Spawning  for red with key 65535
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
@@ -192,87 +244,35 @@ Storing message Account loged out Name: , ID: N8d8zyaw, data: [none] with key 0
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message Server Removed Main Game Server on 192.168.0.172 with key 0
+Storing message Spawning  for red with key 65535
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message Connected to MasterServer with key 65535
+Storing message Spawning  for red with key 65535
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message Server Connected Main Game Server on 192.168.0.172 with key 0
+Storing message Spawning  for red with key 65535
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message Account loged in Name: , ID: N8d8zyaw, data: [none] with key 0
+Storing message Spawning  for red with key 65535
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message Player Joined1 with key 65535
+Storing message Spawning  for red with key 65535
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message  added to unassigned with key 65535
+Storing message Spawning  for red with key 65535
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message  added to blue, moved from Unassigned with key 65535
+Storing message Spawning  for red with key 65535
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message Game Started with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for blue with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for blue with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for blue with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for blue with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for blue with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for blue with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for blue with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for blue with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for blue with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for blue with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for blue with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for blue with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for blue with key 65535
+Storing message Spawning  for red with key 65535
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
