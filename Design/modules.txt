@@ -1,0 +1,68 @@
+Modules are based on default health and shield caps being 100 each.
+
+Weapons:
+
+1. Basic Gatling Cannon
+Very fast fire rate (4 shots per second per gun)
+*Slows down to 3 per second when shields are depleted
+Fast projectile speed
+Small projectiles
+Very low base damage (1 per projectile)
+
+2. Burst laser that fires giant orbs that hurt enemies close to it
+Slow fire rate (2 second charge up and cooldown)
+Slow-Average projectile speed
+Large spherical projectiles
+High dps (20 dps while projectile is in contact with enemy ship - *can stack)
+*Impact delays target's shield regeneration for 10 seconds
+
+3. Guided missile launcher
+Average fire rate (0.5 per second)
+*Projectile speed = your current speed +20%
+Average size *missile projectiles
+Average damage (10 per projectile)
+Ship-seeking (10 second duration)
+
+
+
+Engine Modules:
+
+1. Average engine with boost
+Average max speed (Base)
+Average acceleration (Base)
+No drawbacks
+10% of max shield can be used to gain a 20% speed boost for 5 seconds
+
+2. Switching acceleration / turbo
+High max speed (Base +75%)
+Good acceleration (Base +25%)
+Reduces shield max to 40% of its base
+Max speed and acceleration can be switched when required
+
+3. Shield syngerising engine
+Low max speed (75% of base)
+High acceleration (Base +100%)
+Shield recharges 50% faster while at >=90% of max speed
+Shield recharges at 10% of original speed when below 50% of top speed
+
+
+Modules:
+
+1. 
+Total shield + 20%
+Total health +20%
+Shield recharge rate +20%
+Provides 1% of max hp/s health regeneration while shields are active
+
+2.
+Top engine speed +30%
+Acceleration +30%
+Grants a 25% damage reduction to shields at the cost of a 25% damage weakness to health
+Health damage increases speed bonuses to 40% for 5 seconds
+
+3.
+Total health +100%
+Total shields reduced to 0
+All shield regeneration is converted to health at 50% speed
+Weapon modules gain 5% damage for each 10% health lost, starting with a bonus of 5% at full health
+
