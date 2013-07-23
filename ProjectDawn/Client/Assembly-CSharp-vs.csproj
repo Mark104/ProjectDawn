@@ -64,7 +64,9 @@
      <Compile Include="Assets\Game\Main\Scripts\UI\Radar\Entrys\BasicFighterRadarEntry.cs" />
      <Compile Include="Assets\Game\Main\Scripts\UI\Radar\Entrys\Source\RadarEntry.cs" />
      <Compile Include="Assets\Game\Main\Scripts\UI\Radar\RadarController.cs" />
-     <Compile Include="Assets\Game\Main\Scripts\UnPackers\UnpackerSelector.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\UnPackers\Ship_Unpacker.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\UnPackers\Source\Default_Unpacker.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\UnPackers\Source\UnpackerSelector.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Utility\Console.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Utility\Fade.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Utility\switchmusic.cs" />
