@@ -25,7 +25,7 @@ Platform assembly: C:\Users\markd_000\Desktop\ProjectDawn\ProjectDawn\Builds\Mas
 Loading C:\Users\markd_000\Desktop\ProjectDawn\ProjectDawn\Builds\MasterServer_Data\Managed\uLink.dll into Unity Child Domain
 Platform assembly: C:\Users\markd_000\Desktop\ProjectDawn\ProjectDawn\Builds\MasterServer_Data\Managed\uLobby.dll (this message is harmless)
 Loading C:\Users\markd_000\Desktop\ProjectDawn\ProjectDawn\Builds\MasterServer_Data\Managed\uLobby.dll into Unity Child Domain
-- Completed reload, in  0.059 seconds
+- Completed reload, in  0.068 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 desktop: 1920x1080 60Hz; virtual: 3600x1080 at -1680,0
@@ -60,6 +60,10 @@ The referenced script on this Behaviour is missing!
 (Filename:  Line: 1606)
 
 Platform assembly: C:\Users\markd_000\Desktop\ProjectDawn\ProjectDawn\Builds\MasterServer_Data\Managed\Boo.Lang.dll (this message is harmless)
+The image effect ShipCam (BloomAndLensFlares) has been disabled as it's not supported on the current platform.
+ 
+(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+
 C:\Users\markd_000\Desktop\ProjectDawn\ProjectDawn\Server\GameServer.exe
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
@@ -80,10 +84,6 @@ Storing message MasterServer init NoError with key 0
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Node {Host: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com', Port: 8087} is online.
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
 Storing message Connected to MasterServer with key 65535
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
@@ -92,199 +92,59 @@ Storing message Server Connected Main Game Server on 192.168.0.2 with key 0
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message Account loged in Name: , ID: N8d8zyaw, data: [none] with key 0
+Sending ping to Node {Host: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com', Port: 8087} ...
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message Player Joined1 with key 65535
+Sending ping to Node {Host: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com', Port: 8087} ...
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message  added to unassigned with key 65535
+Sending ping to Node {Host: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com', Port: 8087} ...
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message  added to red, moved from Unassigned with key 65535
+Sending ping to Node {Host: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com', Port: 8087} ...
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message Game Started with key 65535
+No ping response from Node {Host: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com', Port: 8087}.
+uGameDB.Exceptions.DatabaseDeadNodeException: Node is offline: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com':8087.
+
+--> SocketException: A connection attempt failed because the connected party did not properly respond after a period of time or established connection failed because connected host has failed to respond.
+
+  at System.Net.Sockets.Socket.Connect (System.Net.IPAddress[] addresses, Int32 port) [0x00000] in <filename unknown>:0 
+  at System.Net.Sockets.Socket.Connect (System.String host, Int32 port) [0x00000] in <filename unknown>:0 
+  at #=qrOkTXcY41T4G74izSW9zYg9iNTHim5Fekx0tnRsa3AU=.#=qjSqXnOFYaqPwuwlsaNuBzw== () [0x00000] in <filename unknown>:0 
+--> Rethrown as DatabaseDeadNodeException: Node is offline: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com':8087.
+  at #=qrOkTXcY41T4G74izSW9zYg9iNTHim5Fekx0tnRsa3AU=.#=qjSqXnOFYaqPwuwlsaNuBzw== () [0x00000] in <filename unknown>:0 
+  at #=qrOkTXcY41T4G74izSW9zYg9iNTHim5Fekx0tnRsa3AU=.#=qWEcv2wTjgnZikr$loAaXbA== () [0x00000] in <filename unknown>:0 
+  at #=qrOkTXcY41T4G74izSW9zYg9iNTHim5Fekx0tnRsa3AU=.#=q4neQKX5BCqce9J3J4cnBGw==[#=qxtnd6jgC5Wz6ad$xmuxC6bKgdGCkeXzbsDzPv_deQYQ=] (.#=qxtnd6jgC5Wz6ad$xmuxC6bKgdGCkeXzbsDzPv_deQYQ= #=q$AyyHD_gzwfjhMqHEyndRA==) [0x00000] in <filename unknown>:0 
+  at #=qR6t0O_hn2b9LKiCnFoAsH$WgfeWdibWAuxV1miUvevE=.#=qBban2DT4Tk6pIjewsVfOiQ==[#=qxtnd6jgC5Wz6ad$xmuxC6bKgdGCkeXzbsDzPv_deQYQ=] (.#=qxtnd6jgC5Wz6ad$xmuxC6bKgdGCkeXzbsDzPv_deQYQ= #=qOcMqpkH0fWWG0$M95xacOQ==) [0x00000] in <filename unknown>:0 
+  at #=qR6t0O_hn2b9LKiCnFoAsH$WgfeWdibWAuxV1miUvevE=.#=qIyGuJMiVezVPdCwq_hiOyA==[#=qxtnd6jgC5Wz6ad$xmuxC6bKgdGCkeXzbsDzPv_deQYQ=,#=qXPDmo326jXwej0x9agED8UZ8n1LUvIbzuFC4BQdVLow=] (.#=qxtnd6jgC5Wz6ad$xmuxC6bKgdGCkeXzbsDzPv_deQYQ= #=qJF5PtY0Lr1zTnaCRii6HaQ==) [0x00000] in <filename unknown>:0 
+  at #=q67jIpx4iVCEjAA7$ClhgtQn2vyoCluNZtTJNAot9rlA=+#=q2Nj3JLRfjM9We$dBuzrkNP$JEtnvb3P2yj18a33C5Ew=.#=qjHQuwuvJ466JUbw_NPbVRKMB0KT4E7re1C9AtUc2hGc= (System.Object #=qt00t19RkSqGY_Ct74LKs5A==) [0x00000] in <filename unknown>:0 
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message Spawning  for red with key 65535
+Sending ping to Node {Host: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com', Port: 8087} ...
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
-Storing message Account loged out Name: , ID: N8d8zyaw, data: [none] with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
+No ping response from Node {Host: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com', Port: 8087}.
+uGameDB.Exceptions.DatabaseDeadNodeException: Node is offline: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com':8087.
+
+--> SocketException: A connection attempt failed because the connected party did not properly respond after a period of time or established connection failed because connected host has failed to respond.
 
-Storing message Server Removed Main Game Server on 192.168.0.2 with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Connected to MasterServer with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Server Connected Main Game Server on 192.168.0.2 with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Account loged in Name: , ID: N8d8zyaw, data: [none] with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Player Joined1 with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message  added to unassigned with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message  added to red, moved from Unassigned with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Game Started with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for red with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Account loged out Name: , ID: N8d8zyaw, data: [none] with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Server Removed Main Game Server on 192.168.0.2 with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Connected to MasterServer with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Server Connected Main Game Server on 192.168.0.2 with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Account loged in Name: , ID: N8d8zyaw, data: [none] with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Player Joined1 with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message  added to unassigned with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message  added to red, moved from Unassigned with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Game Started with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for red with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Account loged out Name: , ID: N8d8zyaw, data: [none] with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Server Removed Main Game Server on 192.168.0.2 with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Connected to MasterServer with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Server Connected Main Game Server on 192.168.0.2 with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Account loged in Name: , ID: N8d8zyaw, data: [none] with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Player Joined1 with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message  added to unassigned with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message  added to red, moved from Unassigned with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Game Started with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for red with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Account loged out Name: , ID: N8d8zyaw, data: [none] with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Server Removed Main Game Server on 192.168.0.2 with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Connected to MasterServer with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Server Connected Main Game Server on 192.168.0.2 with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Account loged in Name: , ID: N8d8zyaw, data: [none] with key 0
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Player Joined1 with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message  added to unassigned with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message  added to red, moved from Unassigned with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Game Started with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Storing message Spawning  for red with key 65535
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Failed to log in to account with name  since the account is already logged in to
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Failed to log in to account with name  since the account is already logged in to
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Failed to log in to account with name  since the account is already logged in to
+  at System.Net.Sockets.Socket.Connect (System.Net.IPAddress[] addresses, Int32 port) [0x00000] in <filename unknown>:0 
+  at System.Net.Sockets.Socket.Connect (System.String host, Int32 port) [0x00000] in <filename unknown>:0 
+  at #=qrOkTXcY41T4G74izSW9zYg9iNTHim5Fekx0tnRsa3AU=.#=qjSqXnOFYaqPwuwlsaNuBzw== () [0x00000] in <filename unknown>:0 
+--> Rethrown as DatabaseDeadNodeException: Node is offline: 'ec2-54-229-34-163.eu-west-1.compute.amazonaws.com':8087.
+  at #=qrOkTXcY41T4G74izSW9zYg9iNTHim5Fekx0tnRsa3AU=.#=qjSqXnOFYaqPwuwlsaNuBzw== () [0x00000] in <filename unknown>:0 
+  at #=qrOkTXcY41T4G74izSW9zYg9iNTHim5Fekx0tnRsa3AU=.#=qWEcv2wTjgnZikr$loAaXbA== () [0x00000] in <filename unknown>:0 
+  at #=qrOkTXcY41T4G74izSW9zYg9iNTHim5Fekx0tnRsa3AU=.#=q4neQKX5BCqce9J3J4cnBGw==[#=qxtnd6jgC5Wz6ad$xmuxC6bKgdGCkeXzbsDzPv_deQYQ=] (.#=qxtnd6jgC5Wz6ad$xmuxC6bKgdGCkeXzbsDzPv_deQYQ= #=q$AyyHD_gzwfjhMqHEyndRA==) [0x00000] in <filename unknown>:0 
+  at #=qR6t0O_hn2b9LKiCnFoAsH$WgfeWdibWAuxV1miUvevE=.#=qBban2DT4Tk6pIjewsVfOiQ==[#=qxtnd6jgC5Wz6ad$xmuxC6bKgdGCkeXzbsDzPv_deQYQ=] (.#=qxtnd6jgC5Wz6ad$xmuxC6bKgdGCkeXzbsDzPv_deQYQ= #=qOcMqpkH0fWWG0$M95xacOQ==) [0x00000] in <filename unknown>:0 
+  at #=qR6t0O_hn2b9LKiCnFoAsH$WgfeWdibWAuxV1miUvevE=.#=qIyGuJMiVezVPdCwq_hiOyA==[#=qxtnd6jgC5Wz6ad$xmuxC6bKgdGCkeXzbsDzPv_deQYQ=,#=qXPDmo326jXwej0x9agED8UZ8n1LUvIbzuFC4BQdVLow=] (.#=qxtnd6jgC5Wz6ad$xmuxC6bKgdGCkeXzbsDzPv_deQYQ= #=qJF5PtY0Lr1zTnaCRii6HaQ==) [0x00000] in <filename unknown>:0 
+  at #=q67jIpx4iVCEjAA7$ClhgtQn2vyoCluNZtTJNAot9rlA=+#=q2Nj3JLRfjM9We$dBuzrkNP$JEtnvb3P2yj18a33C5Ew=.#=qjHQuwuvJ466JUbw_NPbVRKMB0KT4E7re1C9AtUc2hGc= (System.Object #=qt00t19RkSqGY_Ct74LKs5A==) [0x00000] in <filename unknown>:0 
  
 (Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
 
