@@ -43,6 +43,8 @@ public class ShipController : uLink.MonoBehaviour
 	void Start () 
 	{
 	
+		
+		//Camera.main.transform.parent = null;
 	//	GameObject tmpObj = Instantiate(m_Cam,new Vector2(0,0),Quaternion.identity) as GameObject;
 		
 	//	tmpObj.SendMessage("SetShip",transform);
@@ -73,12 +75,18 @@ public class ShipController : uLink.MonoBehaviour
 				m_Force -= 5;
 			}
 		}
+		
+		
+		
+		
 	}
 	
 	void LateUpdate ()
 	{
 		nextSend += Time.deltaTime;
 		
+		//Camera.main.transform.position = transform.position - -transform.forward * 5;
+		/*
 		// Get the distance betwen camera Z and ship 
 		m_ShipCamOffset = this.transform.position.z - Camera.main.transform.position.z;
 		
@@ -94,6 +102,39 @@ public class ShipController : uLink.MonoBehaviour
 		float rot= -((Input.mousePosition.x/(Screen.width))-0.5f)*m_BankingAngle;
 		m_ShipMesh.localRotation=Quaternion.Euler(0,0, rot);
 		
+		*/
+		
+		Vector2 rotationValue;
+		
+		if(Input.mousePosition.x != 0)
+		{
+			rotationValue.x = Input.mousePosition.x / Screen.width;
+		}
+		else
+		{
+			rotationValue.x = 0;
+		}
+		
+		if(Input.mousePosition.y != 0)
+		{
+			rotationValue.y = Input.mousePosition.y / Screen.height;
+		}
+		else
+		{
+			rotationValue.y = 0;
+		}
+		
+		rotationValue.x = (rotationValue.x - 0.5f) * 200000;
+		rotationValue.y = (rotationValue.y - 0.5f) * 200000;
+		
+		if(rotationValue.magnitude > 1)
+		{
+			rotationValue.Normalize();
+		}
+		
+		//transform.Rotate(-rotationValue.y,rotationValue.x,0,Space.Self);
+		
+		
 		
 	}
 	
@@ -103,11 +144,10 @@ public class ShipController : uLink.MonoBehaviour
 		
 		
 		
-		this.rigidbody.AddForce(this.transform.forward * m_Force);
-		storedForce += transform.forward * m_Force;
 		
 		
-		
+		//this.rigidbody.AddForce(this.transform.forward * m_Force);
+		//storedForce += transform.forward * m_Force;
 		
 		
 		/* Old Boost Code

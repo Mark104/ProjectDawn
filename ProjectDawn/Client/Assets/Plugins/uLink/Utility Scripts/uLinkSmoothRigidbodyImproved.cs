@@ -200,24 +200,14 @@ public class uLinkSmoothRigidbodyImproved : uLink.MonoBehaviour
 	
 	void Update()
 	{
+		/*
 		if(networkView.isOwner)
 		{
 			float distance = Vector3.Distance(transform.position,currentpos);
 			
 			transform.position = Vector3.Lerp(transform.position,currentpos, Time.deltaTime * (distance * 1));
 		}
-		
-		
-		
-		
-	}
-
-	void FixedUpdate()
-	{
-		
-		
-		
-		
+		*/
 		
 		if(!networkView.isOwner)
 		{
@@ -262,6 +252,16 @@ public class uLinkSmoothRigidbodyImproved : uLink.MonoBehaviour
 			
 			rigidbody.velocity = optimalSmoothVelocity;
 		}
+		
+		
+		
+	}
+
+	void FixedUpdate()
+	{
+	
+		
+		
 
 		
 	}

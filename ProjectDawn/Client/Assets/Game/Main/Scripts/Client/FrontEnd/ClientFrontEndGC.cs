@@ -107,6 +107,7 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 					{
 						if(hit.collider.gameObject.name == "ShipHanger")
 						{
+							servers = ServerRegistry.GetServers();
 							currentSelection = ReleaseSelection.SHIPCOMBAT;
 							Camera.main.animation.Play();
 						}
@@ -132,37 +133,33 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 			
 				if(currentSelection == ReleaseSelection.SHIPCOMBAT)
 				{
-					
-					GUILayout.BeginArea(new Rect(5,60,200,600));
-					
-						scrollPositionModules = GUILayout.BeginScrollView(scrollPositionModules,GUILayout.Width(200),GUILayout.Height(600));
-					
-							for(int i = 0; i < 20;i++)
+					GUILayout.BeginArea(new Rect((Screen.width * 0.5f) - 200,(Screen.height * 0.5f) - 300,400,600));
+				
+						if(servers.Count() == 0)
+						{
+							print ("NoServers");
+							GUILayout.Label("NoServers");
+						}
+						else
+						{
+							print ("ServersFound");
+							foreach(uLobby.ServerInfo info in servers)
 							{
-								GUILayout.Button("Test",GUILayout.Height(50));
-								
+								print ("PrintingServer");
+								if (GUILayout.Button("GameServer"))
+								{
+									uLink.Network.Connect(info.host,info.port);
+								}
 							}
-							
-						
-						GUILayout.EndScrollView();
+						}
 						
 					GUILayout.EndArea();
 					
-					GUILayout.BeginArea(new Rect(Screen.width - 205,60,200,600));
+					if (GUI.Button(new Rect((Screen.width * 0.3f) - 75,5,150,50),"RefreshServers"))
+					{
+						servers = ServerRegistry.GetServers();
+					}
 					
-						scrollPositionItems = GUILayout.BeginScrollView(scrollPositionItems,GUILayout.Width(200),GUILayout.Height(600));
-					
-							for(int i = 0; i < 20;i++)
-							{
-								GUILayout.Button("Test",GUILayout.Height(50));
-								
-							}
-							
-						
-						GUILayout.EndScrollView();
-						
-					GUILayout.EndArea();
-										
 					if (GUI.Button(new Rect((Screen.width * 0.5f) - 75,5,150,50),"PLAY"))
 					{
 						servers = ServerRegistry.GetServers();
@@ -173,7 +170,7 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 						}
 						else
 						{
-							uLink.Network.Connect(servers.First().host,servers.First().port);
+							
 							SendMessage("AddMessage","Connecting to game server");				
 						}
 					}

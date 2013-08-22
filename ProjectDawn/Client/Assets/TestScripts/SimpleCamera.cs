@@ -15,7 +15,13 @@ public class SimpleCamera : MonoBehaviour
 	public float smoothTime = 1F;
     public Vector3 velocity = Vector3.zero;
 	float fd;
-
+	
+	void Start ()
+	{
+		//transform.parent = null;	
+		
+	}
+	
     void LateUpdate () 
 	{
 		

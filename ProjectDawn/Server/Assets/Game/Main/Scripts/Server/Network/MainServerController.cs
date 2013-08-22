@@ -82,12 +82,14 @@ public class MainServerController : uLink.MonoBehaviour {
 					shipPacker.weaponListing[0] = 0;
 					shipPacker.weaponListing[1] = 1;
 					
-					//GameObject tmp = uLink.Network.Instantiate(val.Value.player,proxyShip,ownerShip,creatorShip,new Vector3(0,0,-250 + Random.Range(-20,20)),Quaternion.identity,5);
+					GameObject tmp = uLink.Network.Instantiate(val.Value.player,proxyShip,ownerShip,creatorShip,new Vector3(0,0,-250 + Random.Range(-20,20)),Quaternion.identity,5);
 					
-					GameObject tmp = uLink.Network.Instantiate(val.Value.player,"ClientUnpacker","ClientUnpacker","ServerUnpacker",new Vector3(0,0,-250),Quaternion.identity,5,shipPacker);
+					//GameObject tmp = uLink.Network.Instantiate(val.Value.player,"ClientUnpacker","ClientUnpacker","ServerUnpacker",new Vector3(0,0,-250),Quaternion.identity,5,shipPacker);
 		
 					
 					tmp.name = "" + val.Value.player.id;
+					
+					print ("Created Unpacker");
 				}
 				
 				foreach(KeyValuePair<int,NetworkProfile> val in blueTeam)
@@ -95,9 +97,9 @@ public class MainServerController : uLink.MonoBehaviour {
 					SendDebugInfo("Spawning " + val.Value.name + " for blue");
 					
 					
-					//GameObject tmp = uLink.Network.Instantiate(val.Value.player,proxyShip,ownerShip,creatorShip,new Vector3(0,0,-250 + Random.Range(-20,20)),Quaternion.identity,5);
+					GameObject tmp = uLink.Network.Instantiate(val.Value.player,proxyShip,ownerShip,creatorShip,new Vector3(0,0,-250 + Random.Range(-20,20)),Quaternion.identity,5);
 					
-					GameObject tmp = uLink.Network.Instantiate(val.Value.player,"ClientUnpacker","ClientUnpacker","ServerUnpacker",new Vector3(0,0,-250),Quaternion.identity,5);
+					//GameObject tmp = uLink.Network.Instantiate(val.Value.player,"ClientUnpacker","ClientUnpacker","ServerUnpacker",new Vector3(0,0,-250),Quaternion.identity,5);
 		
 					
 					
@@ -108,8 +110,9 @@ public class MainServerController : uLink.MonoBehaviour {
 				{
 					SendDebugInfo("Spawning " + val.Value.name + " for green");
 					
-					//GameObject tmp = uLink.Network.Instantiate(val.Value.player,proxyShip,ownerShip,creatorShip,new Vector3(0,0,-250 + Random.Range(-20,20)),Quaternion.identity,5);
-					GameObject tmp = uLink.Network.Instantiate(val.Value.player,"ClientUnpacker","ClientUnpacker","ServerUnpacker",new Vector3(0,0,-250),Quaternion.identity,5);
+					GameObject tmp = uLink.Network.Instantiate(val.Value.player,proxyShip,ownerShip,creatorShip,new Vector3(0,0,-250 + Random.Range(-20,20)),Quaternion.identity,5);
+					
+					//GameObject tmp = uLink.Network.Instantiate(val.Value.player,"ClientUnpacker","ClientUnpacker","ServerUnpacker",new Vector3(0,0,-250),Quaternion.identity,5);
 		
 					
 					tmp.name = "" + val.Value.player.id;
