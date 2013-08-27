@@ -51,6 +51,7 @@
      <Compile Include="Assets\Game\Main\Scripts\Client\FrontEnd\ClientFrontEndGC.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Lobby\ClientMasterServerConnection.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Network\MainClientController.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\Persistence\ClientMaster.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\ClientFireControl.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\Guns\BasicCannon.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\Source\Armament.cs" />

@@ -39,6 +39,8 @@ public class ShipController : uLink.MonoBehaviour
 	
 	float test = 1.0f;
 	float test1 = 1.0f;
+	
+	Vector2 lerpedVal;
 	// Use this for initialization
 	void Start () 
 	{
@@ -48,6 +50,8 @@ public class ShipController : uLink.MonoBehaviour
 	//	GameObject tmpObj = Instantiate(m_Cam,new Vector2(0,0),Quaternion.identity) as GameObject;
 		
 	//	tmpObj.SendMessage("SetShip",transform);
+		
+		Camera.main.transform.parent = null;
 		
 		_CurrentFOV = m_MinFOV;
 	}
@@ -76,6 +80,12 @@ public class ShipController : uLink.MonoBehaviour
 			}
 		}
 		
+		if(Input.GetButtonDown("LeaveServer"))
+		{
+			
+			Application.LoadLevel(0);	
+			
+		}
 		
 		
 		
@@ -85,24 +95,19 @@ public class ShipController : uLink.MonoBehaviour
 	{
 		nextSend += Time.deltaTime;
 		
-		//Camera.main.transform.position = transform.position - -transform.forward * 5;
-		/*
+		Vector3 camPos = transform.position;// - transform.forward * 3;
+		
+		//camPos += transform.up * 0.5f;
+		
+		Camera.main.transform.position = transform.position;// - transform.forward * 5;
+		
+		//+ (transform.forward * 10)
+		
 		// Get the distance betwen camera Z and ship 
 		m_ShipCamOffset = this.transform.position.z - Camera.main.transform.position.z;
 		
 		// Get point to look at
 		m_PointLookAt = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, m_ShipCamOffset+m_DistanceToLookPoint));
-		
-		
-		// Rotate the object with a damping added 
-		rotation = Quaternion.LookRotation(m_PointLookAt- transform.position, transform.up);
-		transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * m_Damping);		
-		
-		
-		float rot= -((Input.mousePosition.x/(Screen.width))-0.5f)*m_BankingAngle;
-		m_ShipMesh.localRotation=Quaternion.Euler(0,0, rot);
-		
-		*/
 		
 		Vector2 rotationValue;
 		
@@ -124,18 +129,46 @@ public class ShipController : uLink.MonoBehaviour
 			rotationValue.y = 0;
 		}
 		
-		rotationValue.x = (rotationValue.x - 0.5f) * 200000;
-		rotationValue.y = (rotationValue.y - 0.5f) * 200000;
 		
+		/*
 		if(rotationValue.magnitude > 1)
 		{
 			rotationValue.Normalize();
 		}
+		*/
+		
+		//float rot= -((Input.mousePosition.x/(Screen.width))-0.5f)*m_BankingAngle;
+		//m_ShipMesh.localRotation=Quaternion.Euler(0,0, rot);
+		
+		
+		rotationValue.x = (rotationValue.x - 0.5f);
+		rotationValue.y = (rotationValue.y - 0.5f);
+		
+		lerpedVal = Vector2.Lerp(lerpedVal,rotationValue,Time.deltaTime);
+		
+			
+		camPos += (transform.right * lerpedVal.x) * 5;
+		
+		camPos += (transform.up * lerpedVal.y) * 5;
+		
+		
+		
+		
+		//Camera.main.transform.position = camPos;
+		
+		//transform.Rotate(-lerpedVal.y,0,0,Space.Self);
 		
 		//transform.Rotate(-rotationValue.y,rotationValue.x,0,Space.Self);
 		
+		Camera.main.transform.rotation = Quaternion.LookRotation(transform.forward,transform.up);
 		
+		Vector3 rotVector = new Vector3(0,0,0);
 		
+		rotVector += (transform.right * -lerpedVal.y) * 5;
+		rotVector += (transform.up * lerpedVal.x)  * 5;
+		
+		transform.rigidbody.angularVelocity = rotVector;
+					
 	}
 	
 	// Update is called once per frame
@@ -143,11 +176,11 @@ public class ShipController : uLink.MonoBehaviour
 	{
 		
 		
+		//transform.rigidbody.AddRelativeTorque(new Vector3(-lerpedVal.y * 5,lerpedVal.x * 5,0));
 		
 		
-		
-		//this.rigidbody.AddForce(this.transform.forward * m_Force);
-		//storedForce += transform.forward * m_Force;
+		this.rigidbody.AddForce(this.transform.forward * m_Force);
+		storedForce += transform.forward * m_Force;
 		
 		
 		/* Old Boost Code
@@ -191,11 +224,11 @@ public class ShipController : uLink.MonoBehaviour
 		
 		if(nextSend > 0.1f)
 		{
-			
+			/*
 			networkView.RPC("InputRecived",uLink.RPCMode.Server,this.storedForce,transform.rotation);
 			storedForce = new Vector3(0,0,0);
 			nextSend = 0;
-			
+			*/
 		}
 		
 		

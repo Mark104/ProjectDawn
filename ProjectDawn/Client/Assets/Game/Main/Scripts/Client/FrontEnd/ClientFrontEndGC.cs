@@ -43,30 +43,48 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 	int serverCount = 0;
 	
 	float nextUpdate = 0;
+	
+	ClientMaster CM;
+	
+	void Awake () {
+
+	}
 
 	// Use this for initialization
 	void Start () {
 		
-		lm = -8;
-
-		currentSelection = ReleaseSelection.NONE;
-		
-		currentState = AccountState.LOGEDOUT;
-		
-		currentLobbyStatus = LoobyStatus.NONE;
-		
-		Application.runInBackground = true;
-		
-		Lobby.AddListener(this);
+		CM = GameObject.FindGameObjectWithTag("ClientMaster").GetComponent<ClientMaster>();
 	
-		uLobby.LobbyConnectionError handle = Lobby.ConnectAsClient(Settings.ServerIP,7050);
-		SendMessage("AddMessage","MasterServer connect state " + handle.ToString());
-		
 		AccountManager.OnAccountRegistered += OnAccountRegistered;
 		AccountManager.OnRegisterFailed += OnRegisterFailed;
 		AccountManager.OnAccountLoggedIn += OnAccountLoggedIn;
 		AccountManager.OnAccountLoggedOut += OnAccoutLogedOut;
 		AccountManager.OnLogInFailed += OnAccountLoginFail;
+		
+		if (!CM.IsReturningToHanger())
+		{	
+			lm = -8;
+	
+			currentSelection = ReleaseSelection.NONE;
+			
+			currentState = AccountState.LOGEDOUT;
+			
+			currentLobbyStatus = LoobyStatus.NONE;
+			
+			Application.runInBackground = true;
+			
+			Lobby.AddListener(this);
+		
+			uLobby.LobbyConnectionError handle = Lobby.ConnectAsClient(Settings.ServerIP,7050);
+			SendMessage("AddMessage","MasterServer connect state " + handle.ToString());
+		}
+		else
+		{
+			currentLobbyStatus = LoobyStatus.NONE;
+			currentState = AccountState.LOGEDIN;
+			currentSelection = ReleaseSelection.NONE;
+			SplashScreen.SendMessage("StartFade");
+		}
 	
 	}
 	
@@ -317,6 +335,8 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 	{
 		Application.LoadLevel(1);
 		SendMessage("AddMessage","Starting Game");
+		
+		CM.ReturningToHanger();
 	}
 	
 	[RPC]
