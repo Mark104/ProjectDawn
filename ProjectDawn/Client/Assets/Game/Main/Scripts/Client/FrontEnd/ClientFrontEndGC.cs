@@ -80,10 +80,13 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 		}
 		else
 		{
+			lm = -8;
+			
 			currentLobbyStatus = LoobyStatus.NONE;
 			currentState = AccountState.LOGEDIN;
 			currentSelection = ReleaseSelection.NONE;
 			SplashScreen.SendMessage("StartFade");
+			
 		}
 	
 	}
@@ -117,6 +120,8 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 				#region Release Navigation
 				if(Input.GetMouseButtonDown(0))
 				{
+					print ("Raycast!");
+					
 					RaycastHit hit;
 					
 					Ray raycast = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x,Input.mousePosition.y,0));

@@ -91,6 +91,11 @@ public class uLinkSimpleServer : uLink.MonoBehaviour
 			
 			// this is not really necessery unless you are removing NetworkViews without calling uLink.Network.Destroy
 			uLink.Network.RemoveInstantiates(player);
+			
+			if(uLink.Network.connections.Length == 0)
+			{
+				Application.Quit();
+			}
 		}
 	}
 

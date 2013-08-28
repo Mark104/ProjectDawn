@@ -136,8 +136,8 @@ public class MainMasterServer : MonoBehaviour {
 	[RPC]
 	public void AttemptToLaunchServer()
 	{
-		print (Directory.GetCurrentDirectory() + "\\" + "GameServer.exe");
-		System.Diagnostics.Process.Start(Directory.GetCurrentDirectory() + "\\" + "GameServer.exe");
+		SendDebugInfo(Directory.GetCurrentDirectory() + "\\" + "GameServer.exe");
+		System.Diagnostics.Process.Start(Directory.GetCurrentDirectory() + "\\" + "GameServer.exe","-batchmode");
 		
 	}
 	

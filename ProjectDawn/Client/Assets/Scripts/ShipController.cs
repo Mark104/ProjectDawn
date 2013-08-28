@@ -83,6 +83,7 @@ public class ShipController : uLink.MonoBehaviour
 		if(Input.GetButtonDown("LeaveServer"))
 		{
 			
+			uLink.Network.Disconnect();
 			Application.LoadLevel(0);	
 			
 		}
