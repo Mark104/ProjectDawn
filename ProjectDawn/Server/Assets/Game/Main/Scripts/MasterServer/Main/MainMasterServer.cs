@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 
+
+
+
 public class StoredMessageInfo {
 	
 	public string message;
@@ -20,13 +23,16 @@ public class StoredMessageInfo {
 	
 }
 
-public class MainMasterServer : MonoBehaviour {
+public class MainMasterServer : uLink.MonoBehaviour {
+	
+	string messageOfDestiny;
+	
+	uLobby.LobbyConnectionError handle;
 	
 	List<StoredMessageInfo> storedMessages = new List<StoredMessageInfo>();
 	
 	LobbyPeer debugServer;
 	
-
 	// Use this for initialization
 	void Start () {
 		
@@ -43,7 +49,7 @@ public class MainMasterServer : MonoBehaviour {
 		AccountManager.OnAccountLoggedIn += OnAccountLoggedIn;
 		AccountManager.OnAccountLoggedOut += OnAccoutLogedOut;
 		
-		uLobby.LobbyConnectionError handle = Lobby.InitializeLobby(30,7050,"ec2-54-229-34-163.eu-west-1.compute.amazonaws.com",8087);
+		handle = Lobby.InitializeLobby(30,7050,"ec2-54-229-34-163.eu-west-1.compute.amazonaws.com",8087);
 			
 		SendDebugInfo("MasterServer init " + handle);
 	
@@ -63,8 +69,16 @@ public class MainMasterServer : MonoBehaviour {
 	void Update () {
 		
 		
-
+			
+	}
 	
+	void OnGUI () {
+		
+		
+		
+		GUILayout.Label(messageOfDestiny);	
+		
+		
 	}
 	
 	private void uLobby_OnLobbyInitialized()

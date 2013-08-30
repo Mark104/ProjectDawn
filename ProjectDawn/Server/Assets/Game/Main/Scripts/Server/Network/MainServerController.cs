@@ -42,7 +42,7 @@ public class MainServerController : uLink.MonoBehaviour {
 		
 		Lobby.AddListener(this);
 	
-		uLobby.LobbyConnectionError handle = Lobby.ConnectAsServer(Settings.ServerIP,7050);
+		uLobby.LobbyConnectionError handle = Lobby.ConnectAsServer("ec2-54-229-103-211.eu-west-1.compute.amazonaws.com",7050);
 		SendDebugInfo("MasterServer connect state " + handle.ToString());
 	
 		

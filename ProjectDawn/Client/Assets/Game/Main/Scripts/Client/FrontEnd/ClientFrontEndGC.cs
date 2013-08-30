@@ -53,6 +53,7 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
+		
 		CM = GameObject.FindGameObjectWithTag("ClientMaster").GetComponent<ClientMaster>();
 	
 		AccountManager.OnAccountRegistered += OnAccountRegistered;
@@ -75,7 +76,7 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 			
 			Lobby.AddListener(this);
 		
-			uLobby.LobbyConnectionError handle = Lobby.ConnectAsClient(Settings.ServerIP,7050);
+			uLobby.LobbyConnectionError handle = Lobby.ConnectAsClient("ec2-54-229-103-211.eu-west-1.compute.amazonaws.com",7050);
 			SendMessage("AddMessage","MasterServer connect state " + handle.ToString());
 		}
 		else
@@ -160,18 +161,20 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 				
 						if(servers.Count() == 0)
 						{
-							print ("NoServers");
+							
 							GUILayout.Label("NoServers");
 						}
 						else
 						{
-							print ("ServersFound");
+							
 							foreach(uLobby.ServerInfo info in servers)
 							{
-								print ("PrintingServer");
+								
 								if (GUILayout.Button("GameServer"))
 								{
-									uLink.Network.Connect(info.host,info.port);
+									print ("Trying to join server on" + info.host + " on port " + info.port);
+									uLink.Network.Connect("ec2-54-229-103-211.eu-west-1.compute.amazonaws.com",info.port);
+									//uLink.Network.Connect(info.host,info.port);
 								}
 							}
 						}
