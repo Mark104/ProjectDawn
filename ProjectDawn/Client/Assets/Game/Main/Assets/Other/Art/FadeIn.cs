@@ -17,9 +17,10 @@ public class FadeIn : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-	
+	/*
 		BALF.bloomThreshhold =  Mathf.Lerp(0,0.2f,Time.time * 0.5f);
 		BALF.bloomIntensity =  Mathf.Lerp(5,0.25f,Time.time * 0.5f);
+	*/
 	
 	}
 }

@@ -1,1 +1,0 @@
-Assets/Game/Main/Prefabs/Multiplayer/Ship/OwnerShip.prefab

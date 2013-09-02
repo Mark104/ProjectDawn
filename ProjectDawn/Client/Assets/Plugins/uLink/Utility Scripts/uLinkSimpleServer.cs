@@ -4,7 +4,6 @@ using System;
 using UnityEngine;
 using uLink;
 
-
 /// <summary>
 /// A script example that can be used to start a very simple Unity server 
 /// listening for uLink connection attempts from clients.
@@ -24,7 +23,6 @@ using uLink;
 [AddComponentMenu("uLink Utilities/Simple Server")]
 public class uLinkSimpleServer : uLink.MonoBehaviour
 {
-
 	[Serializable]
 	public class InstantiateOnConnected
 	{
@@ -48,10 +46,7 @@ public class uLinkSimpleServer : uLink.MonoBehaviour
 			}
 		}
 	}
-	
-	
-	
-	
+
 	public int port = 7100;
 	public int maxConnections = 64;
 	
@@ -72,7 +67,6 @@ public class uLinkSimpleServer : uLink.MonoBehaviour
 		if (dontDestroyOnLoad) DontDestroyOnLoad(this);
 	
 		uLink.Network.InitializeServer(maxConnections, port);
-		
 	}
 
 	void uLink_OnServerInitialized()
@@ -96,8 +90,6 @@ public class uLinkSimpleServer : uLink.MonoBehaviour
 
 	void uLink_OnPlayerConnected(uLink.NetworkPlayer player)
 	{
-		gameObject.SendMessage("AddMessage","Player " + player.id + " connected");
-	
 		instantiateOnConnected.Instantiate(player);
 	}
 }

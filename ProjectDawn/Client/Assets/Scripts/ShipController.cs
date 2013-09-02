@@ -98,11 +98,9 @@ public class ShipController : uLink.MonoBehaviour
 		
 		Vector3 camPos = transform.position;// - transform.forward * 3;
 		
-		//camPos += transform.up * 0.5f;
+		camPos += transform.up * 0.5f;
 		
-		Camera.main.transform.position = transform.position;// - transform.forward * 5;
-		
-		//+ (transform.forward * 10)
+		camPos -= transform.forward * 3;
 		
 		// Get the distance betwen camera Z and ship 
 		m_ShipCamOffset = this.transform.position.z - Camera.main.transform.position.z;
@@ -155,7 +153,7 @@ public class ShipController : uLink.MonoBehaviour
 		
 		
 		
-		//Camera.main.transform.position = camPos;
+		Camera.main.transform.position = camPos;
 		
 		//transform.Rotate(-lerpedVal.y,0,0,Space.Self);
 		
@@ -169,6 +167,15 @@ public class ShipController : uLink.MonoBehaviour
 		rotVector += (transform.up * lerpedVal.x)  * 5;
 		
 		transform.rigidbody.angularVelocity = rotVector;
+		
+		if(nextSend > 0.1f)
+		{
+			
+			networkView.RPC("InputRecived",uLink.RPCMode.Server,this.storedForce,transform.rotation);
+			storedForce = new Vector3(0,0,0);
+			nextSend = 0;
+			
+		}
 					
 	}
 	
@@ -223,14 +230,7 @@ public class ShipController : uLink.MonoBehaviour
 		*/
 		
 		
-		if(nextSend > 0.1f)
-		{
-			/*
-			networkView.RPC("InputRecived",uLink.RPCMode.Server,this.storedForce,transform.rotation);
-			storedForce = new Vector3(0,0,0);
-			nextSend = 0;
-			*/
-		}
+		
 		
 		
 		

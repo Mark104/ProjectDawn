@@ -14,6 +14,8 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 	List<string> blueTeam = new List<string>();
 	List<string> greenTeam = new List<string>();
 	
+	public Transform ShipLocation;
+	
 	public GameObject SplashScreen;
 	
 	enum AccountState {LOGEDOUT,LOGEDIN};
@@ -24,6 +26,18 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 	
 	enum LoobyStatus {NONE, STARTED,DECIDED,FINISHED};
 	LoobyStatus currentLobbyStatus;
+	
+	enum GameSelection {NONE, CUSTOM,QUICKPLAY,EVENT};
+	GameSelection currentPlaySelection;
+
+	enum GameSearchStatus {NONE, SEARCHING,LOBBY,PRELOAD};
+	GameSearchStatus currentGameSearchStatus;
+	
+	public Texture2D topFrame;
+	
+	public Texture2D bottomFrame;
+	
+	private Rect customGamesRect;
 	
 	string errorMessage = "";
 	
@@ -45,6 +59,9 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 	float nextUpdate = 0;
 	
 	ClientMaster CM;
+	
+	
+	Vector2 scrollValue = new Vector2(0,0);
 	
 	void Awake () {
 
@@ -72,6 +89,8 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 			
 			currentLobbyStatus = LoobyStatus.NONE;
 			
+			currentGameSearchStatus = GameSearchStatus.NONE;
+			
 			Application.runInBackground = true;
 			
 			Lobby.AddListener(this);
@@ -87,7 +106,8 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 			currentState = AccountState.LOGEDIN;
 			currentSelection = ReleaseSelection.NONE;
 			SplashScreen.SendMessage("StartFade");
-			
+		
+			currentGameSearchStatus = GameSearchStatus.NONE;
 		}
 	
 	}
@@ -140,6 +160,21 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 				#endregion
 			}
 			
+			if(currentSelection == ReleaseSelection.SHIPCOMBAT)
+			{
+				if(currentPlaySelection == GameSelection.NONE)
+				{
+					if(Input.GetMouseButton(0))
+					{
+						
+						Camera.main.transform.RotateAround(ShipLocation.position,transform.up,Input.GetAxis("Horizontal") * 0.4f);
+					
+					}
+					
+					
+				}
+			}
+			
 		}
 	
 	}
@@ -152,64 +187,62 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 		}
 		else
 		{
-			if(currentLobbyStatus == LoobyStatus.NONE)
+			if(currentGameSearchStatus == GameSearchStatus.NONE)
 			{
-			
 				if(currentSelection == ReleaseSelection.SHIPCOMBAT)
-				{
-					GUILayout.BeginArea(new Rect((Screen.width * 0.5f) - 200,(Screen.height * 0.5f) - 300,400,600));
-				
-						if(servers.Count() == 0)
-						{
-							
-							GUILayout.Label("NoServers");
-						}
-						else
-						{
-							
-							foreach(uLobby.ServerInfo info in servers)
-							{
-								
-								if (GUILayout.Button("GameServer"))
+				{							
+					if(currentPlaySelection == GameSelection.NONE)
+					{
+						
+
+						GUILayout.BeginArea(new Rect((Screen.width / 2) - 200,80,400,200));
+						
+							GUILayout.BeginHorizontal();
+						
+								if (GUILayout.Button ("Custom"))
 								{
-									print ("Trying to join server on" + info.host + " on port " + info.port);
-									uLink.Network.Connect("ec2-54-229-103-211.eu-west-1.compute.amazonaws.com",info.port);
-									//uLink.Network.Connect(info.host,info.port);
+									currentPlaySelection = GameSelection.CUSTOM;
 								}
-							}
-						}
+								if (GUILayout.Button ("Quick"))
+								{
+									currentPlaySelection = GameSelection.QUICKPLAY;
+								}
+								if (GUILayout.Button ("Events"))
+								{
+									currentPlaySelection = GameSelection.EVENT;
+								}
 						
-					GUILayout.EndArea();
-					
-					if (GUI.Button(new Rect((Screen.width * 0.3f) - 75,5,150,50),"RefreshServers"))
-					{
-						servers = ServerRegistry.GetServers();
+							GUILayout.EndHorizontal();
+						
+						GUILayout.EndArea ();	
 					}
-					
-					if (GUI.Button(new Rect((Screen.width * 0.5f) - 75,5,150,50),"PLAY"))
+					else
 					{
-						servers = ServerRegistry.GetServers();
-						
-						if (servers.Count() == 0)
-						{	
-							SendMessage("AddMessage","No Servers!");		
-						}
-						else
+						if(currentPlaySelection == GameSelection.CUSTOM)
 						{
 							
-							SendMessage("AddMessage","Connecting to game server");				
+							GUI.Window(0, new Rect((Screen.width / 2) - 300,100,600,400), CustomGameWindow, "Custom games listing");
+						
+						} else if (currentPlaySelection == GameSelection.QUICKPLAY)
+						{
+							
+							
+							
+						} else if (currentPlaySelection == GameSelection.EVENT)
+						{
+							
+							
+							
 						}
-					}
-					
-					if (GUI.Button(new Rect((Screen.width * 0.8f) - 75,5,150,50),"Launch Server"))
-					{
-						Lobby.RPC("AttemptToLaunchServer",LobbyPeer.lobby);
-					}
-					
+					}	
 				}
 			}
-			else
+			else if (currentGameSearchStatus ==	GameSearchStatus.LOBBY)
 			{
+				GUI.Window(0, new Rect((Screen.width / 2) - 300,100,600,400), LobbyWindow, "Game Lobby");
+				
+				/*
+				
 				GUILayout.BeginArea(new Rect((Screen.width * 0.5f) - 200,(Screen.height * 0.5f) - 300,400,600));
 				
 				GUILayout.BeginHorizontal();
@@ -278,7 +311,7 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 				
 				GUILayout.EndArea();
 				
-				
+				*/
 			}
 		}
 		
@@ -331,6 +364,124 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
         
     }
 	
+	void CustomGameWindow(int windowID) {
+	
+		GUILayout.BeginHorizontal();
+		
+			if (GUILayout.Button("Refresh Servers"))
+			{
+				servers = ServerRegistry.GetServers();
+			}
+			if (GUILayout.Button("Launch Server"))
+			{
+				Lobby.RPC("AttemptToLaunchServer",LobbyPeer.lobby);
+			}
+			
+		GUILayout.EndHorizontal();
+		
+			scrollValue = GUILayout.BeginScrollView (scrollValue,GUILayout.Height(400));
+	
+			if(servers.Count() == 0) // If there are no registered servers we display a label saying nay
+			{
+				GUILayout.Label("No Servers");
+				
+			}
+			foreach(uLobby.ServerInfo info in servers)
+			{
+				
+				if (GUILayout.Button("GameServer"))
+				{
+					print ("Trying to join server on" + info.host + " on port " + info.port);
+					// "ec2-54-229-103-211.eu-west-1.compute.amazonaws.com"
+					//uLink.Network.Connect("ec2-54-229-103-211.eu-west-1.compute.amazonaws.com",info.port);
+					uLink.Network.Connect("25.150.103.245",info.port);
+				}
+			}
+		
+			GUILayout.EndScrollView();
+		
+		
+    }
+	
+	void LobbyWindow(int windowID) {
+		
+		GUILayout.BeginVertical();	
+		
+		
+			GUILayout.Label("Waiting on host to Start");
+			
+		
+			GUILayout.Label("");			
+			
+			GUILayout.BeginHorizontal();
+			
+				GUILayout.BeginVertical();
+			
+					GUILayout.Label("Red");
+				
+					foreach(string _Playa in redTeam)
+					{
+						GUILayout.Label(_Playa);
+					}
+			
+					GUILayout.Label("");
+					
+					if (GUILayout.Button("Join Red"))
+						networkView.RPC("AddToRed",uLink.RPCMode.Server);
+			
+				GUILayout.EndVertical();
+			
+				GUILayout.BeginVertical();
+			
+					GUILayout.Label("Blue");
+			
+					foreach(string _Playa in blueTeam)
+					{
+						GUILayout.Label(_Playa);
+					}
+			
+					GUILayout.Label("");
+					
+					if (GUILayout.Button("Join Blue"))
+						networkView.RPC("AddToBlue",uLink.RPCMode.Server);
+				
+					
+				GUILayout.EndVertical();
+			
+				GUILayout.BeginVertical();
+				
+					GUILayout.Label("Green");
+			
+					foreach(string _Playa in greenTeam)
+					{
+						GUILayout.Label(_Playa);
+					}
+			
+					GUILayout.Label("");
+					
+					if (GUILayout.Button("Join Green"))
+						networkView.RPC("AddToGreen",uLink.RPCMode.Server);
+				
+				
+				GUILayout.EndVertical();
+		
+			GUILayout.EndHorizontal();
+		
+			GUILayout.BeginHorizontal();
+			
+				GUILayout.Button("Leave Game");
+		
+				if (GUILayout.Button("Start Game"))
+				{
+					networkView.RPC("HostGame",uLink.RPCMode.Server);
+				}
+			
+			GUILayout.EndHorizontal();
+		
+		GUILayout.EndVertical();
+		
+	}
+	
 	[RPC]
 	void GetListings(int _Players,int _Servers)
 	{
@@ -356,6 +507,8 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 	[RPC]
 	void UpdatePlayerList(int _Team,string _Name,int _LastTeam)
 	{
+		print ("Player" + _Name + " on team " + _Team + " last team was " + _LastTeam);
+		
 		switch(_LastTeam)
 		{
 		case -1:
@@ -403,6 +556,8 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 		SendMessage("AddMessage","Connected to Server");
 		networkView.RPC("UserConnected",uLink.RPCMode.Server,username,AccountManager.loggedInAccount.id);
 		currentLobbyStatus = LoobyStatus.STARTED;
+	
+		currentGameSearchStatus = GameSearchStatus.LOBBY;
 	}
 	
 	void uLink_OnDisconnectedFromServer(uLink.NetworkDisconnection mode)

@@ -34,10 +34,20 @@ public class MainMasterServer : uLink.MonoBehaviour {
 	LobbyPeer debugServer;
 	
 	// Use this for initialization
+	
+	Void Awake () {	
+		
+		Application.targetFrameRate = 60;
+	}
+	
+	
 	void Start () {
+		
+		Application.targetFrameRate = 60;
 		
 		print (Directory.GetCurrentDirectory() + "\\" + "GameServer.exe");
 		Application.runInBackground = true;
+	
 		
 		Lobby.AddListener(this);
 		

@@ -18,8 +18,6 @@ public class MainServerController : uLink.MonoBehaviour {
 	public	GameObject ownerShip;
 	public	GameObject proxyShip;
 	
-	double gamestartTimer = 5;
-	
 	double timeTillStart;
 	
 	enum ServerState {NONE,LOBBY,PREGAME,PLAYING,POSTGAME};
@@ -46,8 +44,7 @@ public class MainServerController : uLink.MonoBehaviour {
 		SendDebugInfo("MasterServer connect state " + handle.ToString());
 	
 		
-		curentServerState = ServerState.NONE;
-		
+		curentServerState = ServerState.LOBBY;
 		
 	
 	}
@@ -124,19 +121,7 @@ public class MainServerController : uLink.MonoBehaviour {
 			}
 			
 		}
-		
-		if((gamestartTimer - uLink.Network.time) <= 0 && curentServerState == ServerState.LOBBY)
-		{
-			SendDebugInfo("Game Started");
-			
-			networkView.RPC("StartGame",uLink.RPCMode.All);
-			
-			timeTillStart = uLink.Network.time + 5;
-			
-			
-	
-			curentServerState = ServerState.PREGAME;
-		}
+
 	
 	}
 	
@@ -154,6 +139,21 @@ public class MainServerController : uLink.MonoBehaviour {
 		Lobby.RPC("PassOnDebugInfo",LobbyPeer.lobby,_Message,networkView.owner.id);
 	}
 	
+	[RPC]
+	void HostGame()
+	{
+
+		SendDebugInfo("Game Started");
+			
+		networkView.RPC("StartGame",uLink.RPCMode.Others);
+		
+		timeTillStart = uLink.Network.time + 5;
+
+		curentServerState = ServerState.PREGAME;
+	
+
+	}
+	
 	[RPC]	
 	void UserConnected (string _Name,AccountID _ID,uLink.NetworkMessageInfo _Info)
 	{
@@ -162,6 +162,8 @@ public class MainServerController : uLink.MonoBehaviour {
 		tempProf.name = _Name;
 		
 		tempProf.player = _Info.sender;
+		
+		print (_Name);
 		
 		unassignedPlayers.Add(_Info.sender.id,tempProf);
 		
@@ -237,8 +239,11 @@ public class MainServerController : uLink.MonoBehaviour {
 			NetworkProfile tmpProfile = new NetworkProfile();
 			
 			
+			
 			if(unassignedPlayers.ContainsKey(_Info.sender.id))
 			{
+				print ("was on no team");
+				
 				tmpProfile = unassignedPlayers[_Info.sender.id];
 				unassignedPlayers.Remove(_Info.sender.id);
 				
@@ -246,11 +251,10 @@ public class MainServerController : uLink.MonoBehaviour {
 			}
 			else
 			{
-				
-				
 				if(redTeam.ContainsKey(_Info.sender.id))
 				{
 					lastTeam = 0;
+		
 					
 					tmpProfile = redTeam[_Info.sender.id];
 					redTeam.Remove(_Info.sender.id);
@@ -278,12 +282,14 @@ public class MainServerController : uLink.MonoBehaviour {
 				}
 			}
 			
+			print (tmpProfile.name);
+			
 			SendDebugInfo(tmpProfile.name + " added to blue, moved from " + movedFrom);
 			
 			
 			blueTeam.Add(_Info.sender.id,tmpProfile);
 				
-			networkView.RPC("UpdatePlayerList",uLink.RPCMode.All,1,tmpProfile.name,lastTeam);
+			networkView.RPC("UpdatePlayerList",uLink.RPCMode.Others,1,tmpProfile.name,lastTeam);
 		}
 	}
 	
@@ -347,22 +353,12 @@ public class MainServerController : uLink.MonoBehaviour {
 	
 	void uLink_OnPlayerConnected(uLink.NetworkPlayer player) {
 		
-		if (gamestartTimer == 5)
-		{
-			curentServerState = ServerState.LOBBY;
-			
-			gamestartTimer = uLink.Network.time + gamestartTimer;
-			
-			SendDebugInfo("Player Joined" + player.id);
-			
-			networkView.RPC("StartTimer",player,gamestartTimer);
-		}
+
+		curentServerState = ServerState.LOBBY;
 		
-		
-		/*
-		GameObject tmp = uLink.Network.Instantiate(player,proxyShip,ownerShip,creatorShip,new Vector3(0,0,-250),Quaternion.identity,5);
-		tmp.name = "" + player.id;
-		*/
+		SendDebugInfo("Player Joined" + player.id);
+			
+
 	}
 	
 	void uLink_OnConnectedToServer()

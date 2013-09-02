@@ -137,8 +137,6 @@ public class uLinkClientGUI : uLink.MonoBehaviour
 		}
 		else if (uLink.Network.status == uLink.NetworkStatus.Connected)
 		{
-			print ("CONNECTED");
-			
 			if (uLink.NetworkView.FindByOwner(uLink.Network.player).Length != 0)
 			{
 				if (lockCursor)
