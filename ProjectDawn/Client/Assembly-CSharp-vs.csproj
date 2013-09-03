@@ -46,6 +46,8 @@
   <ItemGroup>
      <Compile Include="Assets\Game\Main\Assets\Other\Art\FadeIn.cs" />
      <Compile Include="Assets\Game\Main\Assets\Other\Art\outline.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\Base\ButtonEventSender.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\Base\GameController.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Bullet\ClientBullet.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Entity\ClientBasicFighter.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\FrontEnd\ClientFrontEndGC.cs" />
@@ -70,6 +72,7 @@
      <Compile Include="Assets\Game\Main\Scripts\UnPackers\Source\UnpackerSelector.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Utility\Console.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Utility\Fade.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Utility\SendToGC.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Utility\switchmusic.cs" />
      <Compile Include="Assets\Game\Settings\Settings.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\ChatInput.cs" />

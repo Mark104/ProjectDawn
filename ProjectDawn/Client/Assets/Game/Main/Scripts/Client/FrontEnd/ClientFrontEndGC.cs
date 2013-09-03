@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class ClientFrontEndGC : uLink.MonoBehaviour {
+public class ClientFrontEndGC : GameController {
 	
 	Rect windowRect = new Rect((Screen.width * 0.5f) - 200, (Screen.height * 0.5f) - 80, 400, 160);	
 	bool connectedToMS = false;
@@ -60,8 +60,29 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 	
 	ClientMaster CM;
 	
-	
 	Vector2 scrollValue = new Vector2(0,0);
+	
+	public override void OnClick(short id)
+	{
+		if(id == 0)
+		{
+			
+			
+		}
+		else if (id == 1)
+		{
+			
+			
+			
+		}
+		else if (id == 2)
+		{
+			
+			
+			
+		}
+			
+	}
 	
 	void Awake () {
 
