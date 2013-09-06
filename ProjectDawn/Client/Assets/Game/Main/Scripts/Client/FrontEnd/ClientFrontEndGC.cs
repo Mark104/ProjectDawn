@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class ClientFrontEndGC : GameController {
+public class ClientFrontEndGC : uLink.MonoBehaviour {
 	
 	Rect windowRect = new Rect((Screen.width * 0.5f) - 200, (Screen.height * 0.5f) - 80, 400, 160);	
 	bool connectedToMS = false;
@@ -62,30 +62,13 @@ public class ClientFrontEndGC : GameController {
 	
 	Vector2 scrollValue = new Vector2(0,0);
 	
-	public override void OnClick(short id)
-	{
-		if(id == 0)
-		{
-			
-			
-		}
-		else if (id == 1)
-		{
-			
-			
-			
-		}
-		else if (id == 2)
-		{
-			
-			
-			
-		}
-			
-	}
-	
 	void Awake () {
 
+	}
+	
+	public void Login (string _Username, string _Password)
+	{
+		AccountManager.LogIn(_Username,_Password);
 	}
 
 	// Use this for initialization
@@ -204,7 +187,7 @@ public class ClientFrontEndGC : GameController {
 		
 		if(currentState == AccountState.LOGEDOUT)
 		{
-			windowRect = GUI.Window(0, windowRect, LoginWindow, "Login Window");	
+			//windowRect = GUI.Window(0, windowRect, LoginWindow, "Login Window");	
 		}
 		else
 		{
@@ -343,6 +326,7 @@ public class ClientFrontEndGC : GameController {
 	
 	void LoginWindow(int windowID) {
 		
+		/*
 		GUILayout.BeginVertical();
 		
 			GUILayout.BeginHorizontal();
@@ -372,9 +356,11 @@ public class ClientFrontEndGC : GameController {
 				
 				if (GUILayout.Button("Login",GUILayout.Height(60)))
 				{
+					
 					//Lobby.RPC("AttemptLogin",LobbyPeer.lobby,username,password);
 					AccountManager.LogIn(username,password);
 					print ("blargle");
+					
 				}
 	
 			GUILayout.EndHorizontal();
@@ -382,6 +368,8 @@ public class ClientFrontEndGC : GameController {
 			GUILayout.Label(errorMessage);
 		
 		GUILayout.EndVertical();
+		
+		*/
         
     }
 	
@@ -601,6 +589,8 @@ public class ClientFrontEndGC : GameController {
 	
 	void OnAccountLoggedIn(Account _Account)
 	{
+		print ("Loged in");
+		
 		SendMessage("AddMessage","Account loged in " + _Account.ToString());
 		
 		currentState = AccountState.LOGEDIN;

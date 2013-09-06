@@ -48,12 +48,15 @@
      <Compile Include="Assets\Game\Main\Assets\Other\Art\outline.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Base\ButtonEventSender.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Base\GameController.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\Base\UIManager.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Bullet\ClientBullet.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Entity\ClientBasicFighter.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\FrontEnd\ClientFrontEndGC.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Lobby\ClientMasterServerConnection.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Network\MainClientController.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Persistence\ClientMaster.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\UI\FrontEndUIManager.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\UIEventSenders\Login.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\ClientFireControl.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\Guns\BasicCannon.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\Source\Armament.cs" />
