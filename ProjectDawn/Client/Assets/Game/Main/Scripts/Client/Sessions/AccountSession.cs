@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class AccountSession : uLink.MonoBehaviour {
+	
+	public FrontEndGC _FrontEndGC;
 
 	// Use this for initialization
 	void Start () {
@@ -27,12 +29,10 @@ public class AccountSession : uLink.MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	public void Login (string _Username, string _Password)
+	{
+		AccountManager.LogIn(_Username,_Password);
 	}
-	
-	
 	
 	
 	#region ULobbyCallbacks
@@ -47,6 +47,8 @@ public class AccountSession : uLink.MonoBehaviour {
 	void OnAccountLoggedIn(Account _Account)
 	{
 		print ("Loged in");
+		
+		_FrontEndGC.HideLoginPanel();
 		
 		SendMessage("AddMessage","Account loged in " + _Account.ToString());
 	}

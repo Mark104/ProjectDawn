@@ -13,7 +13,7 @@ public class Login : MonoBehaviour {
 	public void OnClick()
 	{
 		
-		GameObject.FindGameObjectWithTag("GameController").GetComponent<ClientFrontEndGC>().Login(Username.GetComponent<UIInput>().text,Password.GetComponent<UIInput>().text);
+		GameObject.FindGameObjectWithTag("GameController").GetComponent<FrontEndGC>().Login(Username.GetComponent<UIInput>().text,Password.GetComponent<UIInput>().text);
 	
 	}
 	

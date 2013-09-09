@@ -47,6 +47,13 @@ public class UIPanelController : MonoBehaviour {
 		
 	}
 	
+	public void SkipPanel()
+	{
+		
+		transform.localPosition = hidePosition;
+		
+	}
+	
 	public virtual void HideFInished()
 	{
 		print ("roar");

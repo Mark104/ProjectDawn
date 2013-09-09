@@ -1,0 +1,76 @@
+-debug
+-target:library
+-nowarn:0169
+-out:Temp/Assembly-CSharp-firstpass.dll
+-r:"C:/Program Files (x86)/Unity/Editor/Data/PlaybackEngines/WindowsStandalonePlayer/Managed/UnityEngine.dll"
+-r:Assets/Jboy/Library/Jboy.Core.dll
+-r:Assets/Jboy/Library/Jboy.dll
+-r:Assets/Plugins/uGameDB/Assembly/uGameDB.dll
+-r:Assets/Plugins/uLink/Assembly/uLink.dll
+-r:Assets/Plugins/uLobby/Assembly/uLobby.dll
+-define:UNITY_STANDALONE_WIN
+-define:ENABLE_MICROPHONE
+-define:ENABLE_IMAGEEFFECTS
+-define:ENABLE_WEBCAM
+-define:ENABLE_AUDIO_FMOD
+-define:UNITY_STANDALONE
+-define:ENABLE_NETWORK
+-define:ENABLE_MONO
+-define:ENABLE_PHYSICS
+-define:ENABLE_TERRAIN
+-define:ENABLE_CACHING
+-define:ENABLE_SUBSTANCE
+-define:ENABLE_GENERICS
+-define:ENABLE_CLOTH
+-define:ENABLE_MOVIES
+-define:ENABLE_AUDIO
+-define:ENABLE_WWW
+-define:ENABLE_SHADOWS
+-define:ENABLE_DUCK_TYPING
+-define:UNITY_4_1_5
+-define:UNITY_4_1
+"Assets/Plugins/uGameDB/Utility Scripts/uGameDBAdminInterface.cs"
+"Assets/Plugins/uGameDB/Utility Scripts/uGameDBConnection.cs"
+"Assets/Plugins/uGameDB/Utility Scripts/uGameDBStatisticsGUI.cs"
+"Assets/Plugins/uLink/Basic Scripts/uLinkEnterLicenseKey.cs"
+"Assets/Plugins/uLink/Basic Scripts/uLinkInternalHelper.cs"
+"Assets/Plugins/uLink/Basic Scripts/uLinkNetworkP2P.cs"
+"Assets/Plugins/uLink/Basic Scripts/uLinkNetworkView.cs"
+"Assets/Plugins/uLink/Basic Scripts/uLinkRegisterPrefabs.cs"
+"Assets/Plugins/uLink/Basic Scripts/uLinkServerAuthentication.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkChatGUI.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkClientGUI.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkConsoleGUI.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkInstantiateForOthers.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkInstantiatePool.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkObjectLabel.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkObservedList.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkOverrideNetworkDestroy.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkOverrideSettings.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkP2PConnector.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkSimpleServer.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkSmoothCharacter.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkSmoothPlatformer.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkSmoothRigidbody.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkSmoothRigidbodyImproved.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkStatisticsGUI.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkStrictCharacter.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkStrictPlatformer.cs"
+"Assets/Plugins/uLink/Utility Scripts/uLinkTargetFrameRateFix.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/BlurEffect.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/ColorCorrectionEffect.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/ContrastStretchEffect.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/EdgeDetectEffect.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/GlowEffect.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/GrayscaleEffect.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/ImageEffectBase.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/ImageEffects.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/MotionBlur.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/NoiseEffect.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/SSAOEffect.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/SepiaToneEffect.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/TwirlEffect.cs"
+"Assets/Standard Assets/Image Effects (Pro Only)/VortexEffect.cs"
+"Assets/Standard Assets/Scripts/General Scripts/ActivateTrigger.cs"
+"Assets/Standard Assets/Scripts/Utility Scripts/CombineChildren.cs"
+"Assets/Standard Assets/Scripts/Utility Scripts/MeshCombineUtility.cs"

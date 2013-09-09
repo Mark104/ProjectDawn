@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LoginPanel : UIPanelController {
 	
-	
+
 
 	// Use this for initialization
 	void Start () {

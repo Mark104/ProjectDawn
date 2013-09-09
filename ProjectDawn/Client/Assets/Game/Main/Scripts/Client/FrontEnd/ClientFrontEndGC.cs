@@ -68,7 +68,7 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 	
 	public void Login (string _Username, string _Password)
 	{
-		AccountManager.LogIn(_Username,_Password);
+		Login(_Username,_Password);
 	}
 
 	// Use this for initialization

@@ -46,12 +46,12 @@
   <ItemGroup>
      <Compile Include="Assets\Game\Main\Assets\Other\Art\FadeIn.cs" />
      <Compile Include="Assets\Game\Main\Assets\Other\Art\outline.cs" />
-     <Compile Include="Assets\Game\Main\Scripts\Client\Base\ButtonEventSender.cs" />
-     <Compile Include="Assets\Game\Main\Scripts\Client\Base\GameController.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Base\UIManager.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Bullet\ClientBullet.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Entity\ClientBasicFighter.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\FrontEnd\ClientFrontEndGC.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\GameController\Base\GameController.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\GameController\FrontEndGC.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Lobby\ClientMasterServerConnection.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Network\MainClientController.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Persistence\ClientMaster.cs" />
