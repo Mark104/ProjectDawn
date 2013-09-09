@@ -6,6 +6,9 @@ public class Login : MonoBehaviour {
 	public GameObject Username;
 	public GameObject Password;
 	
+	
+	
+	
 
 	public void OnClick()
 	{

@@ -595,8 +595,6 @@ public class ClientFrontEndGC : uLink.MonoBehaviour {
 		
 		currentState = AccountState.LOGEDIN;
 		
-		SplashScreen.SendMessage("StartFade");
-		
 		SendMessage("SwitchSound");
 	}
 	

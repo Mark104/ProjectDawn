@@ -55,7 +55,12 @@
      <Compile Include="Assets\Game\Main\Scripts\Client\Lobby\ClientMasterServerConnection.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Network\MainClientController.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Persistence\ClientMaster.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\Sessions\AccountSession.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\Sessions\Base\GameSession.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\Sessions\SpaceSession.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\UI\Base\UIPanelController.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\UI\FrontEndUIManager.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\UI\LoginPanel.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\UIEventSenders\Login.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\ClientFireControl.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\Guns\BasicCannon.cs" />
