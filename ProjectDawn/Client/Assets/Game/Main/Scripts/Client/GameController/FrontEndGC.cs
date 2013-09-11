@@ -7,6 +7,21 @@ public class FrontEndGC : GameController {
 	FrontEndUIManager UIManager;
 	AccountSession AS;
 	
+	public Transform cameraPosition1; // Space battlefield
+	public Transform cameraPosition2; // Internal conflict
+	public Transform cameraPosition3; // Planet assault
+	
+	bool curentlyLerping = false;
+	
+	enum GameType
+	{
+		SPACEBATTLEFIELD,
+		INTERNALCONFLICT,
+		PLANETASSAULT
+	}; 
+	
+	GameType currentGameType;
+	
 	public void ShowLoginPanel()
 	{
 		UIManager._LoginPanel.ShowPanel();
@@ -25,6 +40,30 @@ public class FrontEndGC : GameController {
 	public void Login (string _Username, string _Password)
 	{
 		AS.Login(_Username,_Password);
+	}
+	
+	public void GameTypeSelection(int _GameType) // User has selected a game type
+	{
+		if(_GameType == 0) // Space Battlefield selected
+		{
+			
+			curentlyLerping = true;
+			
+		}
+		else if (_GameType == 1) // Internal conflict selected
+		{
+			
+			
+			curentlyLerping = true;
+		}
+		else if (_GameType ==2) // Planet Assault
+		{
+			
+			
+			curentlyLerping = true;
+		}
+		
+		
 	}
 	
 
@@ -63,6 +102,31 @@ public class FrontEndGC : GameController {
 	
 	// Update is called once per frame
 	void Update () {
+		
+		if(curentlyLerping)
+		{
+			if (currentGameType == GameType.SPACEBATTLEFIELD)
+			{
+				float positionalLerp =  0.2f / Vector3.Distance(Camera.main.transform.position,cameraPosition1.position);
+				
+				Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position,cameraPosition1.position,Time.deltaTime);
+				Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation,cameraPosition1.rotation,Time.deltaTime);												
+				
+				
+					
+			}
+			else if (currentGameType == GameType.INTERNALCONFLICT)
+			{
+				
+			}
+			else if (currentGameType == GameType.PLANETASSAULT)
+			{
+					
+					
+			}
+				
+			
+		}
 	
 	}
 }
