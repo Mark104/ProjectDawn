@@ -11,6 +11,8 @@ public class FrontEndGC : GameController {
 	public Transform cameraPosition2; // Internal conflict
 	public Transform cameraPosition3; // Planet assault
 	
+	private Transform LerpToPosition;
+	
 	bool curentlyLerping = false;
 	
 	enum GameType
@@ -21,6 +23,8 @@ public class FrontEndGC : GameController {
 	}; 
 	
 	GameType currentGameType;
+	
+	int pendingGameType;
 	
 	public void ShowLoginPanel()
 	{
@@ -46,21 +50,24 @@ public class FrontEndGC : GameController {
 	{
 		if(_GameType == 0) // Space Battlefield selected
 		{
-			
+			LerpToPosition = cameraPosition1;
 			curentlyLerping = true;
+			pendingGameType = 0;
 			
 		}
 		else if (_GameType == 1) // Internal conflict selected
 		{
 			
-			
+			LerpToPosition = cameraPosition2;
 			curentlyLerping = true;
+			pendingGameType = 1;
 		}
 		else if (_GameType ==2) // Planet Assault
 		{
 			
-			
+			LerpToPosition = cameraPosition3;
 			curentlyLerping = true;
+			pendingGameType = 2;
 		}
 		
 		
@@ -105,27 +112,37 @@ public class FrontEndGC : GameController {
 		
 		if(curentlyLerping)
 		{
-			if (currentGameType == GameType.SPACEBATTLEFIELD)
-			{
-				float positionalLerp =  0.2f / Vector3.Distance(Camera.main.transform.position,cameraPosition1.position);
-				
-				Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position,cameraPosition1.position,Time.deltaTime);
-				Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation,cameraPosition1.rotation,Time.deltaTime);												
-				
-				
-					
-			}
-			else if (currentGameType == GameType.INTERNALCONFLICT)
-			{
-				
-			}
-			else if (currentGameType == GameType.PLANETASSAULT)
-			{
-					
-					
-			}
-				
+		
+			float positionalLerp =  0.1f / Vector3.Distance(Camera.main.transform.position,cameraPosition1.position);
 			
+			Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position,cameraPosition1.position,Time.deltaTime);
+			Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation,cameraPosition1.rotation,Time.deltaTime);												
+			
+			if (positionalLerp >= 1)
+			{
+				Camera.main.transform.position = cameraPosition1.position;
+				Camera.main.transform.rotation = cameraPosition1.rotation;											
+				curentlyLerping = false;
+				
+				if(pendingGameType == 0)
+				{
+					currentGameType = GameType.SPACEBATTLEFIELD;
+					
+				}else if (pendingGameType == 1)
+				{
+					
+					
+				}else if (pendingGameType == 2)
+				{
+					
+					
+					
+				}
+		
+			
+				
+			}
+
 		}
 	
 	}
