@@ -48,7 +48,7 @@ public class AccountSession : uLink.MonoBehaviour {
 	{
 		print ("Loged in");
 		
-		_FrontEndGC.HideLoginPanel();
+		_FrontEndGC.LogedIn();
 		
 		SendMessage("AddMessage","Account loged in " + _Account.ToString());
 	}

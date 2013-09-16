@@ -7,6 +7,8 @@ public class Fade : MonoBehaviour {
 	
 	public enum FadeType {FadeToBlackAndOut};
 	
+	public Material _Material;
+	
 	public FadeType fadeMethod;
 	
 	Color currentCol = Color.white;
@@ -15,11 +17,20 @@ public class Fade : MonoBehaviour {
 
 	
 	private float fadeStartTime;
+	
+	void Awake() {
+		
+		Color tempCOlor = Color.white;
+		_Material.SetColor("_Color",tempCOlor);
+		
+	}
 
 	// Use this for initialization
 	void Start () {
 		
 		currentCol.a = 255;
+		
+		
 	
 	}
 	
@@ -48,7 +59,7 @@ public class Fade : MonoBehaviour {
 			}
 
 			
-			renderer.material.SetColor("_Color",currentCol);
+			_Material.SetColor("_Color",currentCol);
 			
 		}
 	

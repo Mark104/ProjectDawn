@@ -26,19 +26,25 @@ public class FrontEndGC : GameController {
 	
 	int pendingGameType;
 	
-	public void ShowLoginPanel()
+	public void LogedIn()
 	{
-		UIManager._LoginPanel.ShowPanel();
-	}
-	
-	public void HideLoginPanel()
-	{
-		UIManager._LoginPanel.HidePanel();
+		UIManager._LoginPanel.ChangeHideState();
+		UIManager._TopPanel.ChangeHideState();
+		UIManager._BottomPanel.ChangeHideState();
+		UIManager.FadeSPlash();
 	}
 	
 	public void SkipLoginPhase()
 	{
 		UIManager._LoginPanel.SkipPanel();
+		UIManager.RemoveSplash();
+	}
+	
+	
+	void StartLoginPhase()
+	{
+		UIManager._LoginPanel.ChangeHideState(); // Show the login panel
+		
 	}
 	
 	public void Login (string _Username, string _Password)
@@ -53,6 +59,8 @@ public class FrontEndGC : GameController {
 			LerpToPosition = cameraPosition1;
 			curentlyLerping = true;
 			pendingGameType = 0;
+			UIManager._GameModePanel.ChangeHideState();
+			
 			
 		}
 		else if (_GameType == 1) // Internal conflict selected
@@ -73,12 +81,18 @@ public class FrontEndGC : GameController {
 		
 	}
 	
+	void Awake () {
+		
+		UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<FrontEndUIManager>();
+			
+		
+	}
+	
 
 	// Use this for initialization
 	void Start () {
 	
-		UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<FrontEndUIManager>();
-		
+		print (UIManager.gameObject.name);
 		//If we do not currently have an account session lets create one, this will store what state
 		//the account is currently in and contain callbacks to ulobby
 		
@@ -95,6 +109,8 @@ public class FrontEndGC : GameController {
 			AS = tmpObj.AddComponent<AccountSession>();
 			AS._FrontEndGC = this;
 			tmpObj.AddComponent<Console>();
+			
+			StartLoginPhase();
 		
 		
 		}
@@ -127,6 +143,7 @@ public class FrontEndGC : GameController {
 				if(pendingGameType == 0)
 				{
 					currentGameType = GameType.SPACEBATTLEFIELD;
+					
 					
 				}else if (pendingGameType == 1)
 				{

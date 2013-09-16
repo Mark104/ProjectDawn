@@ -3,7 +3,11 @@ using System.Collections;
 
 public class UIPanelController : MonoBehaviour {
 	
-	Vector3 hidePosition = new Vector3(0,400,0);
+	protected Vector3 hidePosition = new Vector3(0,0,0);
+	
+	protected Vector3 showPosition = new Vector3(0,0,0);
+	
+	protected bool currentlyHidden = false;
 
 	// Use this for initialization
 	void Start () {
@@ -15,15 +19,29 @@ public class UIPanelController : MonoBehaviour {
 	
 	}
 	
-	public void HidePanel()	{
+	public void ChangeHideState() {
+		
+		if(currentlyHidden)
+		{			
+			ShowPanel();
+		}
+		else
+		{
+			HidePanel();
+		}
+		
+		
+	}
+	
+	void HidePanel()	{
 		
 		TweenPosition tmpTween = gameObject.AddComponent<TweenPosition>();
 		
-		tmpTween.from = new Vector3(0,0,0);
+		tmpTween.from = showPosition;
 		
 		tmpTween.to = hidePosition;
 		
-		tmpTween.callWhenFinished = "HideFinished";
+		tmpTween.callWhenFinished = "TweenFinished";
 		
 		tmpTween.style = UITweener.Style.Once;
 		
@@ -31,35 +49,33 @@ public class UIPanelController : MonoBehaviour {
 		
 	}
 	
-	public void ShowPanel()	{
+	void ShowPanel()	{
 		
 		TweenPosition tmpTween = gameObject.AddComponent<TweenPosition>();
 		
 		tmpTween.from = hidePosition;
 		
-		tmpTween.to = new Vector3(0,0,0);
+		tmpTween.to = showPosition;
 		
-		tmpTween.callWhenFinished = "HideFinished";
+		tmpTween.callWhenFinished = "TweenFinished";
 		
 		tmpTween.style = UITweener.Style.Once;
 		
 		tmpTween.method = UITweener.Method.EaseOut;
 		
+		
+		
 	}
 	
 	public void SkipPanel()
 	{
-		
 		transform.localPosition = hidePosition;
-		
 	}
 	
-	public virtual void HideFInished()
+	public void TweenFinished()
 	{
-		print ("roar");
+		currentlyHidden = !currentlyHidden;
 		
-		
-		
-		
+		Destroy(gameObject.GetComponent<UITweener>());
 	}
 }
