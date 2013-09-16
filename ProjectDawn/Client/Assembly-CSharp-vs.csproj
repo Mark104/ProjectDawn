@@ -46,6 +46,7 @@
   <ItemGroup>
      <Compile Include="Assets\Game\Main\Assets\Other\Art\FadeIn.cs" />
      <Compile Include="Assets\Game\Main\Assets\Other\Art\outline.cs" />
+     <Compile Include="Assets\Game\Main\Assets\TestAssets\fire.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Base\UIManager.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Bullet\ClientBullet.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Entity\ClientBasicFighter.cs" />
@@ -59,8 +60,11 @@
      <Compile Include="Assets\Game\Main\Scripts\Client\Sessions\Base\GameSession.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Sessions\SpaceSession.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\UI\Base\UIPanelController.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\UI\BottomPanel.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\UI\FrontEndUIManager.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\UI\GameModePanel.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\UI\LoginPanel.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\UI\TopPanel.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\UIEventSenders\Login.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\UIEventSenders\SpaceBattlefield.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\ClientFireControl.cs" />
