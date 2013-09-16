@@ -81,6 +81,13 @@ public class FrontEndGC : GameController {
 		
 	}
 	
+	public void JoinServer (string _ServerIp,int _ServerPort)
+	{
+		
+		
+		
+	}
+	
 	void Awake () {
 		
 		UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<FrontEndUIManager>();

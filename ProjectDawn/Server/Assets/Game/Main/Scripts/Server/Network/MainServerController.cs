@@ -14,6 +14,38 @@ public struct NetworkProfile {
 
 public class MainServerController : uLink.MonoBehaviour {
 	
+	
+	//Initilised values ----------------------------------------
+	
+	short minimumPlayers = 2;
+	short startGameTime = 2; // In seconds
+	short resultsTime = 2; // In seconds
+	short roundTime = 2; // In miniutes
+	
+	//----------------------------------------------------------
+	
+	enum GameState
+	{
+		WAITINGFORPLAYERS,
+		STARTING,
+		PLAYING,
+		RESULTS
+	} GameState	currentGameState = GameState.WAITINGFORPLAYERS;
+	
+	int playerCount = 0;
+	
+	float currentGameTimer = 0; // In seconds
+	
+	float currentStartingTimer = 0; // in seconds
+	
+	float currenResultsTimer = 0; // In seconds
+	
+	bool serverDetailsNeedUpdating = false;
+	
+	float serverUpdateInterval = 2;
+	
+	//Revised code above this
+	
 	public	GameObject creatorShip;
 	public	GameObject ownerShip;
 	public	GameObject proxyShip;
@@ -32,7 +64,11 @@ public class MainServerController : uLink.MonoBehaviour {
 	
 	Dictionary<int,NetworkProfile> greenTeam = new Dictionary<int, NetworkProfile>();
 	
-
+	void UpdateServerListing () {
+		
+		
+	}
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -43,10 +79,7 @@ public class MainServerController : uLink.MonoBehaviour {
 		uLobby.LobbyConnectionError handle = Lobby.ConnectAsServer("ec2-54-229-103-211.eu-west-1.compute.amazonaws.com",7050);
 		SendDebugInfo("MasterServer connect state " + handle.ToString());
 	
-		
-		curentServerState = ServerState.LOBBY;
-		
-	
+		playerCount = 3;
 	}
 	
 	void OnDestroy() {
@@ -55,8 +88,91 @@ public class MainServerController : uLink.MonoBehaviour {
 		
 	}
 	
+	void SwitchState(GameState _SwitchedState)
+	{
+		if(_SwitchedState == GameState.WAITINGFORPLAYERS) // We must be restarting the game
+		{
+			
+		}
+		else if (_SwitchedState == GameState.STARTING) // We must be starting
+		{
+			currentStartingTimer = (short)startGameTime;
+			
+		}
+		else if (_SwitchedState == GameState.PLAYING) // we must have started
+		{
+			currentGameTimer = (short)roundTime;
+			//currentGameTimer *= 60;
+			
+		}
+		else if (_SwitchedState == GameState.RESULTS) // we must have ended
+		{
+			currenResultsTimer = (short)resultsTime;
+			
+		}
+		
+		currentGameState = _SwitchedState;
+		
+		print("Im now in " + currentGameState);
+	}
+	
 	// Update is called once per frame
 	void Update () {
+		
+		if(currentGameState == GameState.PLAYING)
+		{
+			if(currentGameTimer <= 0)
+			{
+				SwitchState(GameState.RESULTS);
+			}
+			else
+			{
+				currentGameTimer -= Time.deltaTime;
+			}
+		}
+		else if (currentGameState == GameState.STARTING)
+		{
+			if(currentStartingTimer <= 0)
+			{
+				SwitchState(GameState.PLAYING);
+			}
+			else
+			{
+				currentStartingTimer -= Time.deltaTime;
+			}
+		}
+		else if (currentGameState == GameState.RESULTS)
+		{
+			if(currenResultsTimer <= 0)
+			{
+				SwitchState(GameState.WAITINGFORPLAYERS);
+			}
+			else
+			{
+				currenResultsTimer -= Time.deltaTime;
+			}
+			
+		}
+		else if (currentGameState == GameState.WAITINGFORPLAYERS)
+		{
+			if(playerCount >= minimumPlayers)
+			{
+				SwitchState(GameState.STARTING);
+			}
+		}
+		
+		if(serverDetailsNeedUpdating)
+		{
+			if(serverUpdateInterval <= 0)
+			{
+				ServerRegistry.AddServer(7100,name);
+				serverUpdateInterval = 2;
+			}
+			else
+			{
+				serverUpdateInterval -= Time.deltaTime;
+			}
+		}
 		
 		if(curentServerState == ServerState.PREGAME)
 		{
@@ -353,12 +469,19 @@ public class MainServerController : uLink.MonoBehaviour {
 	
 	void uLink_OnPlayerConnected(uLink.NetworkPlayer player) {
 		
-
+		playerCount++; //Player count goes up by one
 		curentServerState = ServerState.LOBBY;
 		
 		SendDebugInfo("Player Joined" + player.id);
 			
 
+	}
+	
+	void uLink_OnPlayerDisconnected(uLink.NetworkPlayer player) {
+		
+		playerCount--; //Player count goes down by one
+		
+		
 	}
 	
 	void uLink_OnConnectedToServer()
