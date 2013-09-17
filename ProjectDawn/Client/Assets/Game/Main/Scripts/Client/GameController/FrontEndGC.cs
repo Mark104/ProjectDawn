@@ -107,38 +107,29 @@ public class FrontEndGC : GameController {
 		
 		foreach(ServerInfo _Server in servers)
 		{
-			/*
+			
 			GameObject tmpObj = Instantiate(ServerListingElement) as GameObject;
 			tmpObj.transform.parent = ServerListing.transform;
 			ServerListing.GetComponent<UIGrid>().Reposition();
-			
-			
-			
+		
 			GameListing tmpListing = tmpObj.GetComponent<GameListing>();
 			
-			*/
 	
 			uLink.BitStream stream =_Server.data.ReadBitStream();
+			
+			string serverName = stream.ReadString(); // Read server name
 
-			short playerCount = stream.ReadInt16();//= _Server.data.Read<string>();
-			print (playerCount);
+			short playerCount = stream.ReadInt16(); // Read the current player count
+
 			
-			
-			short gameState = stream.ReadInt16();
-			print (gameState);
-			
-			
-			/*
-			 * 
-			short gameStatus = _Server.data.Read<short>();
-			print(gameStatus);
-			
+			short gameState = stream.ReadInt16(); // Read the current game state
+		
 				
-			tmpListing.SetServerAttributes(serverName,playerCount,_Server.host,_Server.port,gameStatus);
+			tmpListing.SetServerAttributes(serverName,playerCount,_Server.host,_Server.port,gameState);
 			
 			ServerList.Add(_Server.ToString(),tmpListing);
 			
-			*/
+			
 		}
 	}
 	
@@ -197,14 +188,15 @@ public class FrontEndGC : GameController {
 	{
 		if(ServerList.Count > 0)
 		{
-			int testvalue = _Server.data.ReadInt32();
-			print(testvalue);
-			string serverName = _Server.data.ReadString();
-			int playerCount = _Server.data.ReadInt32();
-			int gameStatus = _Server.data.ReadInt32();
+			uLink.BitStream stream =_Server.data.ReadBitStream();
 			
+			string serverName = stream.ReadString(); // Read server name
+
+			short playerCount = stream.ReadInt16(); // Read the current player count
+	
+			short gameState = stream.ReadInt16(); // Read the current game state
 			
-			ServerList[_Server.ToString()].SetServerAttributes(serverName,playerCount,_Server.host,_Server.port,gameStatus);
+			ServerList[_Server.ToString()].SetServerAttributes(serverName,playerCount,_Server.host,_Server.port,gameState);
 		}
 	}
 	// Update is called once per frame

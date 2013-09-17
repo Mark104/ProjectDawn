@@ -71,7 +71,7 @@ public class AccountSession : uLink.MonoBehaviour {
 	public void JoinGameServer(string _ServerIp,int _ServerPor)
 	{
 		
-		uLink.Network.Connect("25.150.103.245",_ServerPor);
+		uLink.Network.Connect("192.168.0.183",_ServerPor);
 		print ("Connecting to server " + _ServerIp + " with port" + _ServerPor);
 		
 	}

@@ -169,7 +169,7 @@ public class MainServerController : uLink.MonoBehaviour {
 			{
 				print ("Updating server");
 				//ServerRegistry.UpdateServerData(playerCount,(int)currentGameState);
-				//ServerRegistry.UpdateServerData(ServerName,playerCount,(int)currentGameState);
+				ServerRegistry.UpdateServerData(ServerName,playerCount,(short)currentGameState);
 				serverUpdateInterval = 2;
 			
 			}
@@ -499,10 +499,8 @@ public class MainServerController : uLink.MonoBehaviour {
 	private void uLobby_OnConnected()
 	{
 		SendDebugInfo("Connected to MasterServer");
-		
-		int tmpint = (int)currentGameState;
 	
-		ServerRegistry.AddServer("25.150.103.245",6050,playerCount,(short)currentGameState);//,playerCount,(int)currentGameState);
+		ServerRegistry.AddServer("25.150.103.245",6050,ServerName,playerCount,(short)currentGameState);//,playerCount,(int)currentGameState);
 		//ServerRegistry.AddServer(6050,ServerName,playerCount,(int)currentGameState);//,playerCount,(int)currentGameState);
 	
 	}
