@@ -22,6 +22,8 @@ public class MainServerController : uLink.MonoBehaviour {
 	short resultsTime = 2; // In seconds
 	short roundTime = 2; // In miniutes
 	
+	string ServerName = "GameServer"; 
+	
 	//----------------------------------------------------------
 	
 	enum GameState
@@ -32,7 +34,7 @@ public class MainServerController : uLink.MonoBehaviour {
 		RESULTS
 	} GameState	currentGameState = GameState.WAITINGFORPLAYERS;
 	
-	int playerCount = 0;
+	short playerCount = 0;
 	
 	float currentGameTimer = 0; // In seconds
 	
@@ -112,7 +114,7 @@ public class MainServerController : uLink.MonoBehaviour {
 		}
 		
 		currentGameState = _SwitchedState;
-		
+		serverDetailsNeedUpdating = true;
 		print("Im now in " + currentGameState);
 	}
 	
@@ -165,8 +167,11 @@ public class MainServerController : uLink.MonoBehaviour {
 		{
 			if(serverUpdateInterval <= 0)
 			{
-				ServerRegistry.AddServer(7100,name);
+				print ("Updating server");
+				//ServerRegistry.UpdateServerData(playerCount,(int)currentGameState);
+				//ServerRegistry.UpdateServerData(ServerName,playerCount,(int)currentGameState);
 				serverUpdateInterval = 2;
+			
 			}
 			else
 			{
@@ -472,16 +477,18 @@ public class MainServerController : uLink.MonoBehaviour {
 		playerCount++; //Player count goes up by one
 		curentServerState = ServerState.LOBBY;
 		
+		print ("Player Connected");
+		
 		SendDebugInfo("Player Joined" + player.id);
 			
-
+		serverDetailsNeedUpdating = true;
 	}
 	
 	void uLink_OnPlayerDisconnected(uLink.NetworkPlayer player) {
 		
 		playerCount--; //Player count goes down by one
 		
-		
+		serverDetailsNeedUpdating = true;
 	}
 	
 	void uLink_OnConnectedToServer()
@@ -492,10 +499,12 @@ public class MainServerController : uLink.MonoBehaviour {
 	private void uLobby_OnConnected()
 	{
 		SendDebugInfo("Connected to MasterServer");
-	
-		string name = "Main Game Server";
 		
-		ServerRegistry.AddServer(7100,name);
+		int tmpint = (int)currentGameState;
+	
+		ServerRegistry.AddServer("25.150.103.245",6050,playerCount,(short)currentGameState);//,playerCount,(int)currentGameState);
+		//ServerRegistry.AddServer(6050,ServerName,playerCount,(int)currentGameState);//,playerCount,(int)currentGameState);
+	
 	}
 	
 	private void uLobby_OnServerAdded(ServerInfo server)

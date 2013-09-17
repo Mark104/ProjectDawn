@@ -1,5 +1,11 @@
 using UnityEngine;
+using uLink;
+using uLobby;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+
 
 public class FrontEndGC : GameController {
 	
@@ -7,11 +13,18 @@ public class FrontEndGC : GameController {
 	FrontEndUIManager UIManager;
 	AccountSession AS;
 	
+	IEnumerable<ServerInfo> servers;
+	
 	public Transform cameraPosition1; // Space battlefield
 	public Transform cameraPosition2; // Internal conflict
 	public Transform cameraPosition3; // Planet assault
 	
+	public GameObject ServerListingElement;
+	public Transform ServerListing;
+	
 	private Transform LerpToPosition;
+	
+	private Dictionary<string,GameListing> ServerList = new Dictionary<string, GameListing>();
 	
 	bool curentlyLerping = false;
 	
@@ -81,10 +94,58 @@ public class FrontEndGC : GameController {
 		
 	}
 	
+	public void ShowServers()
+	{
+		UIManager._ServerListingPanel.ChangeHideState();
+		
+		
+		servers = ServerRegistry.GetServers();
+		
+		ServerList.Clear();
+		
+		
+		
+		foreach(ServerInfo _Server in servers)
+		{
+			/*
+			GameObject tmpObj = Instantiate(ServerListingElement) as GameObject;
+			tmpObj.transform.parent = ServerListing.transform;
+			ServerListing.GetComponent<UIGrid>().Reposition();
+			
+			
+			
+			GameListing tmpListing = tmpObj.GetComponent<GameListing>();
+			
+			*/
+	
+			uLink.BitStream stream =_Server.data.ReadBitStream();
+
+			short playerCount = stream.ReadInt16();//= _Server.data.Read<string>();
+			print (playerCount);
+			
+			
+			short gameState = stream.ReadInt16();
+			print (gameState);
+			
+			
+			/*
+			 * 
+			short gameStatus = _Server.data.Read<short>();
+			print(gameStatus);
+			
+				
+			tmpListing.SetServerAttributes(serverName,playerCount,_Server.host,_Server.port,gameStatus);
+			
+			ServerList.Add(_Server.ToString(),tmpListing);
+			
+			*/
+		}
+	}
+	
 	public void JoinServer (string _ServerIp,int _ServerPort)
 	{
-		
-		
+		print ("Joining " + _ServerIp);
+		AS.JoinGameServer(_ServerIp,_ServerPort);
 		
 	}
 	
@@ -99,12 +160,14 @@ public class FrontEndGC : GameController {
 	// Use this for initialization
 	void Start () {
 	
-		print (UIManager.gameObject.name);
 		//If we do not currently have an account session lets create one, this will store what state
 		//the account is currently in and contain callbacks to ulobby
 		
 		GameObject actSessionObj = GameObject.FindGameObjectWithTag("AccountSession");
 		
+		uLobby.ServerRegistry.OnServerDataUpdated += OnServerDataUpdated;
+		
+		Lobby.AddListener(this);
 		
 		if(actSessionObj == null)
 		{
@@ -129,7 +192,21 @@ public class FrontEndGC : GameController {
 		}
 		
 	}
-	
+
+	void OnServerDataUpdated (ServerInfo _Server)
+	{
+		if(ServerList.Count > 0)
+		{
+			int testvalue = _Server.data.ReadInt32();
+			print(testvalue);
+			string serverName = _Server.data.ReadString();
+			int playerCount = _Server.data.ReadInt32();
+			int gameStatus = _Server.data.ReadInt32();
+			
+			
+			ServerList[_Server.ToString()].SetServerAttributes(serverName,playerCount,_Server.host,_Server.port,gameStatus);
+		}
+	}
 	// Update is called once per frame
 	void Update () {
 		
