@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class GameController : MonoBehaviour {
+public class GameController : uLink.MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
