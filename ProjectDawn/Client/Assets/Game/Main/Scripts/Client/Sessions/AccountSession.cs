@@ -71,7 +71,7 @@ public class AccountSession : uLink.MonoBehaviour {
 	public void JoinGameServer(string _ServerIp,int _ServerPor)
 	{
 		
-		uLink.Network.Connect("192.168.0.183",_ServerPor);
+		uLink.Network.Connect("25.150.103.245",_ServerPor);
 		print ("Connecting to server " + _ServerIp + " with port" + _ServerPor);
 		
 	}
@@ -89,6 +89,8 @@ public class AccountSession : uLink.MonoBehaviour {
 	{
 		
 		SendMessage("AddMessage","Connected to Server");
+		
+		Application.LoadLevel(1);
 		
 		//networkView.RPC("UserConnected",uLink.RPCMode.Server,username,AccountManager.loggedInAccount.id);
 	}

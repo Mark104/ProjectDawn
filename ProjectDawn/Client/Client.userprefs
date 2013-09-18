@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Main\Scripts\Client\GameController\FrontEndGC.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Main\Scripts\Client\Sessions\AccountSession.cs">
     <Files>
-      <File FileName="Assets\Game\Main\Scripts\Client\GameController\FrontEndGC.cs" Line="199" Column="113" />
-      <File FileName="Assets\Game\Main\Scripts\Client\Sessions\AccountSession.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Main\Scripts\Client\GameController\FrontEndGC.cs" Line="171" Column="26" />
+      <File FileName="Assets\Game\Main\Scripts\Client\Sessions\AccountSession.cs" Line="93" Column="28" />
       <File FileName="Assets\Game\Main\Scripts\Client\UI\Elements\GameListing.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Main\Scripts\Utility\Console.cs" Line="36" Column="7" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

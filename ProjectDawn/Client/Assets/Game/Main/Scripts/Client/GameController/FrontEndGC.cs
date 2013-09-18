@@ -171,8 +171,11 @@ public class FrontEndGC : GameController {
 			AS._FrontEndGC = this;
 			tmpObj.AddComponent<Console>();
 			
+			uLink.NetworkViewID tmpId = new uLink.NetworkViewID(0);
+			
+			tmpObj.AddComponent<uLink.NetworkView>().SetManualViewID(1);
+			
 			StartLoginPhase();
-		
 		
 		}
 		else
@@ -213,7 +216,7 @@ public class FrontEndGC : GameController {
 			if (positionalLerp >= 1)
 			{
 				Camera.main.transform.position = cameraPosition1.position;
-				Camera.main.transform.rotation = cameraPosition1.rotation;											
+				Camera.main.transform.rotation = cameraPosition1.rotation;		
 				curentlyLerping = false;
 				
 				if(pendingGameType == 0)
