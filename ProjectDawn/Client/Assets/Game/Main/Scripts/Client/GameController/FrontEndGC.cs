@@ -5,6 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+public struct ServerListingElement {
+	
+	
+	public GameListing _GameListing;
+	public GameObject _GameObject;
+	
+	
+}
 
 
 public class FrontEndGC : GameController {
@@ -24,7 +32,7 @@ public class FrontEndGC : GameController {
 	
 	private Transform LerpToPosition;
 	
-	private Dictionary<string,GameListing> ServerList = new Dictionary<string, GameListing>();
+	private Dictionary<string,ServerListingElement> ServerList = new Dictionary<string, ServerListingElement>();
 	
 	bool curentlyLerping = false;
 	
@@ -98,8 +106,18 @@ public class FrontEndGC : GameController {
 	{
 		UIManager._ServerListingPanel.ChangeHideState();
 		
+		RefreshServers();
 		
+	}
+	
+	public void RefreshServers()
+	{
 		servers = ServerRegistry.GetServers();
+		
+		foreach(KeyValuePair<string,ServerListingElement> key in ServerList)
+		{
+			Destroy(key.Value._GameObject);
+		}
 		
 		ServerList.Clear();
 		
@@ -107,12 +125,12 @@ public class FrontEndGC : GameController {
 		
 		foreach(ServerInfo _Server in servers)
 		{
-			
-			GameObject tmpObj = Instantiate(ServerListingElement) as GameObject;
-			tmpObj.transform.parent = ServerListing.transform;
+			ServerListingElement tmpObject = new ServerListingElement();
+			tmpObject._GameObject = Instantiate(ServerListingElement) as GameObject;
+			tmpObject._GameObject.transform.parent = ServerListing.transform;
 			ServerListing.GetComponent<UIGrid>().Reposition();
 		
-			GameListing tmpListing = tmpObj.GetComponent<GameListing>();
+			tmpObject._GameListing = tmpObject._GameObject.GetComponent<GameListing>();
 			
 	
 			uLink.BitStream stream =_Server.data.ReadBitStream();
@@ -125,12 +143,12 @@ public class FrontEndGC : GameController {
 			short gameState = stream.ReadInt16(); // Read the current game state
 		
 				
-			tmpListing.SetServerAttributes(serverName,playerCount,_Server.host,_Server.port,gameState);
+			tmpObject._GameListing.SetServerAttributes(serverName,playerCount,_Server.host,_Server.port,gameState);
 			
-			ServerList.Add(_Server.ToString(),tmpListing);
-			
+			ServerList.Add(_Server.ToString(),tmpObject);
 			
 		}
+		
 	}
 	
 	public void JoinServer (string _ServerIp,int _ServerPort)
@@ -138,12 +156,20 @@ public class FrontEndGC : GameController {
 		print ("Joining " + _ServerIp);
 		AS.JoinGameServer(_ServerIp,_ServerPort);
 		
+		
 	}
 	
 	void Awake () {
 		
 		UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<FrontEndUIManager>();
 			
+		
+	}
+	
+	void OnDestroy() {
+		
+		Lobby.RemoveListener(this);
+		uLobby.ServerRegistry.OnServerDataUpdated -= OnServerDataUpdated;
 		
 	}
 	
@@ -199,7 +225,7 @@ public class FrontEndGC : GameController {
 	
 			short gameState = stream.ReadInt16(); // Read the current game state
 			
-			ServerList[_Server.ToString()].SetServerAttributes(serverName,playerCount,_Server.host,_Server.port,gameState);
+			ServerList[_Server.ToString()]._GameListing.SetServerAttributes(serverName,playerCount,_Server.host,_Server.port,gameState);
 		}
 	}
 	// Update is called once per frame

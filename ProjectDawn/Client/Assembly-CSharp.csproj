@@ -53,6 +53,7 @@
      <Compile Include="Assets\Game\Main\Scripts\Client\FrontEnd\ClientFrontEndGC.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\GameController\Base\GameController.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\GameController\FrontEndGC.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\GameController\SpaceBattlefieldGC.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Lobby\ClientMasterServerConnection.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Network\MainClientController.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Persistence\ClientMaster.cs" />
@@ -69,7 +70,11 @@
      <Compile Include="Assets\Game\Main\Scripts\Client\UI\Panels\TopPanel.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\UIEventSenders\CustomMatch.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\UIEventSenders\Login.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\UIEventSenders\RefreshServers.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\UIEventSenders\SpaceBattlefield.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\Utility\LoadingText.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\Utility\UISpinner.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\Utility\tempServerJoin.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\ClientFireControl.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\Guns\BasicCannon.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Weapons\Source\Armament.cs" />

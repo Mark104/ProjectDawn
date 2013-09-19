@@ -8,6 +8,8 @@ using System.Linq;
 public class AccountSession : uLink.MonoBehaviour {
 	
 	public FrontEndGC _FrontEndGC;
+	
+	private GameObject loadingScreen;
 
 	// Use this for initialization
 	void Start () {
@@ -33,8 +35,7 @@ public class AccountSession : uLink.MonoBehaviour {
 	{
 		AccountManager.LogIn(_Username,_Password);
 	}
-	
-	
+
 	#region ULobbyCallbacks
 	
 	private void uLobby_OnConnected()
@@ -74,6 +75,8 @@ public class AccountSession : uLink.MonoBehaviour {
 		uLink.Network.Connect("25.150.103.245",_ServerPor);
 		print ("Connecting to server " + _ServerIp + " with port" + _ServerPor);
 		
+		
+		
 	}
 	
 	public void OnRegisterFailed(string _Failure,uLobby.AccountError _Error)
@@ -83,6 +86,18 @@ public class AccountSession : uLink.MonoBehaviour {
 	
 	#endregion
 	
+	IEnumerator  LoadLevelInBackground()
+	{
+		loadingScreen = Instantiate(Resources.Load("LoadingScreen")) as GameObject;
+		
+		DontDestroyOnLoad(loadingScreen);
+		
+		yield return Application.LoadLevelAsync(1);
+		
+		Destroy(loadingScreen);
+	}
+	
+	
 	#region uLinkCallbacks
 	
 	void uLink_OnConnectedToServer()
@@ -90,7 +105,10 @@ public class AccountSession : uLink.MonoBehaviour {
 		
 		SendMessage("AddMessage","Connected to Server");
 		
-		Application.LoadLevel(1);
+		
+				
+		StartCoroutine(LoadLevelInBackground());
+		
 		
 		//networkView.RPC("UserConnected",uLink.RPCMode.Server,username,AccountManager.loggedInAccount.id);
 	}

@@ -54,10 +54,6 @@ public class MainServerController : uLink.MonoBehaviour {
 	
 	double timeTillStart;
 	
-	enum ServerState {NONE,LOBBY,PREGAME,PLAYING,POSTGAME};
-		
-	ServerState curentServerState;
-	
 	Dictionary<int,NetworkProfile> unassignedPlayers = new Dictionary<int, NetworkProfile>();
 	
 	Dictionary<int,NetworkProfile> redTeam = new Dictionary<int, NetworkProfile>();
@@ -98,7 +94,7 @@ public class MainServerController : uLink.MonoBehaviour {
 		}
 		else if (_SwitchedState == GameState.STARTING) // We must be starting
 		{
-			currentStartingTimer = (short)startGameTime;
+			currentGameTimer = (short)startGameTime;
 			
 		}
 		else if (_SwitchedState == GameState.PLAYING) // we must have started
@@ -109,17 +105,18 @@ public class MainServerController : uLink.MonoBehaviour {
 		}
 		else if (_SwitchedState == GameState.RESULTS) // we must have ended
 		{
-			currenResultsTimer = (short)resultsTime;
+			currentGameTimer = (short)resultsTime;
 			
 		}
 		
 		currentGameState = _SwitchedState;
 		serverDetailsNeedUpdating = true;
-		print("Im now in " + currentGameState);
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
 		
 		if(currentGameState == GameState.PLAYING)
 		{
@@ -134,24 +131,24 @@ public class MainServerController : uLink.MonoBehaviour {
 		}
 		else if (currentGameState == GameState.STARTING)
 		{
-			if(currentStartingTimer <= 0)
+			if(currentGameTimer <= 0)
 			{
 				SwitchState(GameState.PLAYING);
 			}
 			else
 			{
-				currentStartingTimer -= Time.deltaTime;
+				currentGameTimer -= Time.deltaTime;
 			}
 		}
 		else if (currentGameState == GameState.RESULTS)
 		{
-			if(currenResultsTimer <= 0)
+			if(currentGameTimer <= 0)
 			{
 				SwitchState(GameState.WAITINGFORPLAYERS);
 			}
 			else
 			{
-				currenResultsTimer -= Time.deltaTime;
+				currentGameTimer -= Time.deltaTime;
 			}
 			
 		}
@@ -167,7 +164,6 @@ public class MainServerController : uLink.MonoBehaviour {
 		{
 			if(serverUpdateInterval <= 0)
 			{
-				print ("Updating server");
 				//ServerRegistry.UpdateServerData(playerCount,(int)currentGameState);
 				ServerRegistry.UpdateServerData(ServerName,playerCount,(short)currentGameState);
 				serverUpdateInterval = 2;
@@ -178,7 +174,7 @@ public class MainServerController : uLink.MonoBehaviour {
 				serverUpdateInterval -= Time.deltaTime;
 			}
 		}
-		
+		/*
 		if(curentServerState == ServerState.PREGAME)
 		{
 			if(timeTillStart < uLink.Network.time)
@@ -242,6 +238,7 @@ public class MainServerController : uLink.MonoBehaviour {
 			}
 			
 		}
+		*/
 
 	
 	}
@@ -269,8 +266,6 @@ public class MainServerController : uLink.MonoBehaviour {
 		networkView.RPC("StartGame",uLink.RPCMode.Others);
 		
 		timeTillStart = uLink.Network.time + 5;
-
-		curentServerState = ServerState.PREGAME;
 	
 
 	}
@@ -298,17 +293,146 @@ public class MainServerController : uLink.MonoBehaviour {
 		string movedFrom;
 		int lastTeam = -1;
 		
-		if(curentServerState == ServerState.LOBBY)
+	
+		NetworkProfile tmpProfile = new NetworkProfile();
+		
+		
+		if(unassignedPlayers.ContainsKey(_Info.sender.id))
 		{
-			NetworkProfile tmpProfile = new NetworkProfile();
+			tmpProfile = unassignedPlayers[_Info.sender.id];
+			unassignedPlayers.Remove(_Info.sender.id);
 			
-			
-			if(unassignedPlayers.ContainsKey(_Info.sender.id))
+			movedFrom = "Unassigned";
+		}
+		else
+		{
+			if(blueTeam.ContainsKey(_Info.sender.id))
 			{
-				tmpProfile = unassignedPlayers[_Info.sender.id];
-				unassignedPlayers.Remove(_Info.sender.id);
+				lastTeam = 1;
 				
-				movedFrom = "Unassigned";
+				tmpProfile = blueTeam[_Info.sender.id];
+				blueTeam.Remove(_Info.sender.id);
+				
+				movedFrom = "Blue";
+			}
+			else
+			{
+				if(greenTeam.ContainsKey(_Info.sender.id))
+				{
+					lastTeam = 2;
+					
+					tmpProfile = greenTeam[_Info.sender.id];
+					greenTeam.Remove(_Info.sender.id);
+					
+					movedFrom = "Green";
+				}
+				else
+				{
+					SendMessage("AddMessage","User is already in red!");
+					return;	
+				}
+			}
+		}
+		
+		SendDebugInfo(tmpProfile.name + " added to red, moved from " + movedFrom);
+		
+		
+		redTeam.Add(_Info.sender.id,tmpProfile);
+			
+		networkView.RPC("UpdatePlayerList",uLink.RPCMode.All,0,tmpProfile.name,lastTeam);
+	
+	}
+	
+	[RPC]
+	void AddToBlue (uLink.NetworkMessageInfo _Info)
+	{
+		string movedFrom;
+		int lastTeam = -1;
+		
+		NetworkProfile tmpProfile = new NetworkProfile();
+		
+		
+		
+		if(unassignedPlayers.ContainsKey(_Info.sender.id))
+		{
+			print ("was on no team");
+			
+			tmpProfile = unassignedPlayers[_Info.sender.id];
+			unassignedPlayers.Remove(_Info.sender.id);
+			
+			movedFrom = "Unassigned";
+		}
+		else
+		{
+			if(redTeam.ContainsKey(_Info.sender.id))
+			{
+				lastTeam = 0;
+	
+				
+				tmpProfile = redTeam[_Info.sender.id];
+				redTeam.Remove(_Info.sender.id);
+				
+				movedFrom = "Red";
+			}
+			else
+			{
+				
+				
+				if(greenTeam.ContainsKey(_Info.sender.id))
+				{
+					lastTeam = 2;
+					
+					tmpProfile = greenTeam[_Info.sender.id];
+					greenTeam.Remove(_Info.sender.id);
+					
+					movedFrom = "Green";
+				}
+				else
+				{
+					SendDebugInfo("User is already in blue!");
+					return;	
+				}
+			}
+		}
+		
+		print (tmpProfile.name);
+		
+		SendDebugInfo(tmpProfile.name + " added to blue, moved from " + movedFrom);
+		
+		
+		blueTeam.Add(_Info.sender.id,tmpProfile);
+			
+		networkView.RPC("UpdatePlayerList",uLink.RPCMode.Others,1,tmpProfile.name,lastTeam);
+		
+	}
+	
+	[RPC]
+	void AddToGreen (uLink.NetworkMessageInfo _Info)
+	{
+		string movedFrom;
+		int lastTeam = -1;
+		
+		
+		NetworkProfile tmpProfile = new NetworkProfile();
+		
+		
+		if(unassignedPlayers.ContainsKey(_Info.sender.id))
+		{
+			tmpProfile = unassignedPlayers[_Info.sender.id];
+			unassignedPlayers.Remove(_Info.sender.id);
+			
+			movedFrom = "Unassigned";
+		}
+		else
+		{
+			if(redTeam.ContainsKey(_Info.sender.id))
+			{
+				lastTeam = 0;
+				
+				tmpProfile = redTeam[_Info.sender.id];
+				redTeam.Remove(_Info.sender.id);
+				
+				movedFrom = "Red";
 			}
 			else
 			{
@@ -323,165 +447,36 @@ public class MainServerController : uLink.MonoBehaviour {
 				}
 				else
 				{
-					if(greenTeam.ContainsKey(_Info.sender.id))
-					{
-						lastTeam = 2;
-						
-						tmpProfile = greenTeam[_Info.sender.id];
-						greenTeam.Remove(_Info.sender.id);
-						
-						movedFrom = "Green";
-					}
-					else
-					{
-						SendMessage("AddMessage","User is already in red!");
-						return;	
-					}
-				}
-			}
-			
-			SendDebugInfo(tmpProfile.name + " added to red, moved from " + movedFrom);
-			
-			
-			redTeam.Add(_Info.sender.id,tmpProfile);
-				
-			networkView.RPC("UpdatePlayerList",uLink.RPCMode.All,0,tmpProfile.name,lastTeam);
-		}
-	}
-	
-	[RPC]
-	void AddToBlue (uLink.NetworkMessageInfo _Info)
-	{
-		string movedFrom;
-		int lastTeam = -1;
+					SendMessage("AddMessage","User is already in green!");
 		
-		if(curentServerState == ServerState.LOBBY)
-		{
-			NetworkProfile tmpProfile = new NetworkProfile();
-			
-			
-			
-			if(unassignedPlayers.ContainsKey(_Info.sender.id))
-			{
-				print ("was on no team");
-				
-				tmpProfile = unassignedPlayers[_Info.sender.id];
-				unassignedPlayers.Remove(_Info.sender.id);
-				
-				movedFrom = "Unassigned";
-			}
-			else
-			{
-				if(redTeam.ContainsKey(_Info.sender.id))
-				{
-					lastTeam = 0;
-		
+					return;	
 					
-					tmpProfile = redTeam[_Info.sender.id];
-					redTeam.Remove(_Info.sender.id);
-					
-					movedFrom = "Red";
-				}
-				else
-				{
-					
-					
-					if(greenTeam.ContainsKey(_Info.sender.id))
-					{
-						lastTeam = 2;
-						
-						tmpProfile = greenTeam[_Info.sender.id];
-						greenTeam.Remove(_Info.sender.id);
-						
-						movedFrom = "Green";
-					}
-					else
-					{
-						SendDebugInfo("User is already in blue!");
-						return;	
-					}
 				}
 			}
-			
-			print (tmpProfile.name);
-			
-			SendDebugInfo(tmpProfile.name + " added to blue, moved from " + movedFrom);
-			
-			
-			blueTeam.Add(_Info.sender.id,tmpProfile);
-				
-			networkView.RPC("UpdatePlayerList",uLink.RPCMode.Others,1,tmpProfile.name,lastTeam);
 		}
-	}
-	
-	[RPC]
-	void AddToGreen (uLink.NetworkMessageInfo _Info)
-	{
-		string movedFrom;
-		int lastTeam = -1;
 		
-		if(curentServerState == ServerState.LOBBY)
-		{
-			NetworkProfile tmpProfile = new NetworkProfile();
+		SendDebugInfo(tmpProfile.name + " added to green, moved from " + movedFrom);
+		
+		greenTeam.Add(_Info.sender.id,tmpProfile);
 			
-			
-			if(unassignedPlayers.ContainsKey(_Info.sender.id))
-			{
-				tmpProfile = unassignedPlayers[_Info.sender.id];
-				unassignedPlayers.Remove(_Info.sender.id);
-				
-				movedFrom = "Unassigned";
-			}
-			else
-			{
-				if(redTeam.ContainsKey(_Info.sender.id))
-				{
-					lastTeam = 0;
-					
-					tmpProfile = redTeam[_Info.sender.id];
-					redTeam.Remove(_Info.sender.id);
-					
-					movedFrom = "Red";
-				}
-				else
-				{
-					if(blueTeam.ContainsKey(_Info.sender.id))
-					{
-						lastTeam = 1;
-						
-						tmpProfile = blueTeam[_Info.sender.id];
-						blueTeam.Remove(_Info.sender.id);
-						
-						movedFrom = "Blue";
-					}
-					else
-					{
-						SendMessage("AddMessage","User is already in green!");
-			
-						return;	
-						
-					}
-				}
-			}
-			
-			SendDebugInfo(tmpProfile.name + " added to green, moved from " + movedFrom);
-			
-			greenTeam.Add(_Info.sender.id,tmpProfile);
-				
-			networkView.RPC("UpdatePlayerList",uLink.RPCMode.All,2,tmpProfile.name,lastTeam);
-		}
+		networkView.RPC("UpdatePlayerList",uLink.RPCMode.All,2,tmpProfile.name,lastTeam);
+		
 	}
 	
 	void uLink_OnPlayerConnected(uLink.NetworkPlayer player) {
 		
 		playerCount++; //Player count goes up by one
-		curentServerState = ServerState.LOBBY;
+		
+		networkView.RPC("ServerState",player,(short)currentGameState);
 		
 		print ("Player Connected");
 		
 		SendDebugInfo("Player Joined" + player.id);
 			
 		serverDetailsNeedUpdating = true;
+		
+		
+		
 	}
 	
 	void uLink_OnPlayerDisconnected(uLink.NetworkPlayer player) {
