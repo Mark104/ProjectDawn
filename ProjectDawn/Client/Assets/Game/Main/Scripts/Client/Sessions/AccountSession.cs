@@ -10,6 +10,12 @@ public class AccountSession : uLink.MonoBehaviour {
 	public FrontEndGC _FrontEndGC;
 	
 	private GameObject loadingScreen;
+	
+	string serverIp;
+	
+	int serverPort;
+	
+	Account myAccount;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +40,8 @@ public class AccountSession : uLink.MonoBehaviour {
 	public void Login (string _Username, string _Password)
 	{
 		AccountManager.LogIn(_Username,_Password);
+		
+		
 	}
 
 	#region ULobbyCallbacks
@@ -43,6 +51,8 @@ public class AccountSession : uLink.MonoBehaviour {
 		SendMessage("AddMessage","Connected to MasterServer");
 		
 		
+		
+		
 	}
 	
 	void OnAccountLoggedIn(Account _Account)
@@ -50,6 +60,9 @@ public class AccountSession : uLink.MonoBehaviour {
 		print ("Loged in");
 		
 		_FrontEndGC.LogedIn();
+		
+		myAccount = _Account;
+		
 		
 		SendMessage("AddMessage","Account loged in " + _Account.ToString());
 	}
@@ -75,7 +88,8 @@ public class AccountSession : uLink.MonoBehaviour {
 		uLink.Network.Connect("25.150.103.245",_ServerPor);
 		print ("Connecting to server " + _ServerIp + " with port" + _ServerPor);
 		
-		
+		serverIp = _ServerIp;
+		serverPort = _ServerPor;
 		
 	}
 	
@@ -104,13 +118,8 @@ public class AccountSession : uLink.MonoBehaviour {
 	{
 		
 		SendMessage("AddMessage","Connected to Server");
-		
-		
 				
 		StartCoroutine(LoadLevelInBackground());
-		
-		
-		//networkView.RPC("UserConnected",uLink.RPCMode.Server,username,AccountManager.loggedInAccount.id);
 	}
 	
 	void uLink_OnDisconnectedFromServer(uLink.NetworkDisconnection mode)

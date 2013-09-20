@@ -19,8 +19,9 @@ public class MainServerController : uLink.MonoBehaviour {
 	
 	short minimumPlayers = 2;
 	short startGameTime = 2; // In seconds
+	short roundTime = 6; // In miniutes
 	short resultsTime = 2; // In seconds
-	short roundTime = 2; // In miniutes
+	
 	
 	string ServerName = "GameServer"; 
 	
@@ -110,6 +111,9 @@ public class MainServerController : uLink.MonoBehaviour {
 		}
 		
 		currentGameState = _SwitchedState;
+		
+		networkView.RPC("ServerStateChanged",uLink.RPCMode.Others,(byte)currentGameState);
+			
 		serverDetailsNeedUpdating = true;
 		
 	}
@@ -144,7 +148,14 @@ public class MainServerController : uLink.MonoBehaviour {
 		{
 			if(currentGameTimer <= 0)
 			{
-				SwitchState(GameState.WAITINGFORPLAYERS);
+				if(playerCount > minimumPlayers)
+				{
+					SwitchState(GameState.STARTING);
+				}
+				else
+				{
+					SwitchState(GameState.WAITINGFORPLAYERS);
+				}
 			}
 			else
 			{
@@ -271,8 +282,8 @@ public class MainServerController : uLink.MonoBehaviour {
 	}
 	
 	[RPC]	
-	void UserConnected (string _Name,AccountID _ID,uLink.NetworkMessageInfo _Info)
-	{
+	void UserConnected (string _Name,uLink.NetworkMessageInfo _Info)
+	{	
 		NetworkProfile tempProf = new NetworkProfile();
 
 		tempProf.name = _Name;
@@ -284,6 +295,8 @@ public class MainServerController : uLink.MonoBehaviour {
 		unassignedPlayers.Add(_Info.sender.id,tempProf);
 		
 		SendDebugInfo(_Name + " added to unassigned");
+		
+		networkView.RPC("ServerStatus",_Info.sender,(short)currentGameState,currentGameTimer,startGameTime,roundTime,resultsTime);
 		
 	}
 	
@@ -467,9 +480,7 @@ public class MainServerController : uLink.MonoBehaviour {
 		
 		playerCount++; //Player count goes up by one
 		
-		networkView.RPC("ServerState",player,(short)currentGameState);
 		
-		print ("Player Connected");
 		
 		SendDebugInfo("Player Joined" + player.id);
 			

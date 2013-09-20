@@ -2,11 +2,18 @@ using UnityEngine;
 using System.Collections;
 
 public class tempServerJoin : uLink.MonoBehaviour {
-
+	
+	void Awake () {
+		
+		uLink.Network.Connect("25.150.103.245",6050);
+		
+	}
+	
+	
 	// Use this for initialization
 	void Start () {
 		
-		uLink.Network.Connect("25.150.103.245",6050);
+		
 	
 	}
 	
@@ -17,7 +24,7 @@ public class tempServerJoin : uLink.MonoBehaviour {
 	
 	void uLink_OnConnectedToServer()
 	{
-		print ("Roar");
+		gameObject.GetComponent<SpaceBattlefieldGC>().Initialize("Jimbob");
 		
 		
 	}

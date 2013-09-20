@@ -8,6 +8,8 @@ public class UIPanelController : MonoBehaviour {
 	protected Vector3 showPosition = new Vector3(0,0,0);
 	
 	protected bool currentlyHidden = false;
+	
+	protected float lerpingTime = 2;
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +32,6 @@ public class UIPanelController : MonoBehaviour {
 			HidePanel();
 		}
 		
-		
 	}
 	
 	void HidePanel()	{
@@ -46,6 +47,8 @@ public class UIPanelController : MonoBehaviour {
 		tmpTween.style = UITweener.Style.Once;
 		
 		tmpTween.method = UITweener.Method.EaseOut;
+		
+		tmpTween.duration = lerpingTime;
 		
 	}
 	
@@ -63,17 +66,29 @@ public class UIPanelController : MonoBehaviour {
 		
 		tmpTween.method = UITweener.Method.EaseOut;
 		
+		tmpTween.duration = lerpingTime;
+		
 		
 		
 	}
 	
 	public void SkipPanel()
 	{
-		transform.localPosition = hidePosition;
+		if(!currentlyHidden)
+		{
+			transform.localPosition = hidePosition;
+		}
+		else
+		{
+			transform.localPosition = showPosition;
+		}
+		
+		currentlyHidden = !currentlyHidden;
 	}
 	
 	public void TweenFinished()
 	{
+		print ("Tween FInished");
 		currentlyHidden = !currentlyHidden;
 		
 		Destroy(gameObject.GetComponent<UITweener>());
