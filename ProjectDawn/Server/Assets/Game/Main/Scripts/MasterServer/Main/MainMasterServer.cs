@@ -1,5 +1,6 @@
 using UnityEngine;
 using uLobby;
+using uGameDB;
 using System;
 using System.IO;
 using System.Collections;
@@ -24,6 +25,8 @@ public class StoredMessageInfo {
 }
 
 public class MainMasterServer : uLink.MonoBehaviour {
+	
+	private Bucket shipBucket = new Bucket("Ships");
 	
 	string messageOfDestiny;
 	
@@ -137,10 +140,51 @@ public class MainMasterServer : uLink.MonoBehaviour {
 		}
 	}
 	
+	
+	[RPC]
+	public void SetPlayerShip(string _Ship,LobbyMessageInfo _Info)
+	{
+		AccountID tmpAccountId = AccountManager.Master.GetLoggedInAccount(_Info.sender).id;
+		
+		var setRequest = shipBucket.Set(tmpAccountId.ToString(), _Ship, Encoding.Json);
+	
+		print ("Updating " + tmpAccountId + " with " + _Ship);
+	}
+
+	
+	[RPC]
+	public IEnumerator  RequestPlayerShip(LobbyMessageInfo _Info)
+	{
+		AccountID tmpAccountId = AccountManager.Master.GetLoggedInAccount(_Info.sender).id;
+		
+		var getRequest = shipBucket.Get(tmpAccountId.ToString());
+		
+		yield return getRequest.WaitUntilDone();
+
+	    if (getRequest.hasFailed)
+	    {
+	    	print ("Get Fail");
+			
+			string tempString = "";
+			
+			Lobby.RPC("ReturnPlayerShip",_Info.sender,tempString);
+		
+			
+			yield break;
+    	}
+		
+		print ("Print got " + getRequest.GetValue<string>());
+		
+		Lobby.RPC("ReturnPlayerShip",_Info.sender,getRequest.GetValue<string>());
+			
+	}
+	
+	
+	
 	[RPC]
 	public void RequestLoginInfo(LobbyMessageInfo info)
 	{
-		
+
 	}
 	
 

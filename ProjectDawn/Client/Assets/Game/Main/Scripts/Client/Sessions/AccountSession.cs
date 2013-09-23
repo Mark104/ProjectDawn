@@ -32,8 +32,8 @@ public class AccountSession : uLink.MonoBehaviour {
 		Application.runInBackground = true;
 		Lobby.AddListener(this);
 		
-		Lobby.ConnectAsClient("ec2-54-229-103-211.eu-west-1.compute.amazonaws.com",7050);
-		
+		//Lobby.ConnectAsClient("ec2-54-229-103-211.eu-west-1.compute.amazonaws.com",7050);
+		Lobby.ConnectAsClient("192.168.0.3",7050);
 		
 	}
 	
@@ -63,6 +63,17 @@ public class AccountSession : uLink.MonoBehaviour {
 		
 		myAccount = _Account;
 		
+		byte min = 20;
+		byte max = 20;
+		
+		char minchar = (char)min;
+		char maxchar = (char)max;
+		
+		print ("a 0 char is " + maxchar + " a max char is " +  maxchar);
+		
+		Lobby.RPC("SetPlayerShip",LobbyPeer.lobby,"T0-H1-W0-W0-M0-E0-N0");
+		
+		Lobby.RPC("RequestPlayerShip",LobbyPeer.lobby);
 		
 		SendMessage("AddMessage","Account loged in " + _Account.ToString());
 	}
@@ -113,6 +124,14 @@ public class AccountSession : uLink.MonoBehaviour {
 	
 	
 	#region uLinkCallbacks
+	
+	
+	[RPC]
+	void ReturnPlayerShip(string _ShipCode)
+	{
+		print (_ShipCode);
+	
+	}
 	
 	void uLink_OnConnectedToServer()
 	{

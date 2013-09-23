@@ -24,7 +24,7 @@ public class tempServerJoin : uLink.MonoBehaviour {
 	
 	void uLink_OnConnectedToServer()
 	{
-		gameObject.GetComponent<SpaceBattlefieldGC>().Initialize("Jimbob");
+		gameObject.GetComponent<SpaceBattlefieldGC>().Initialize("Eric");
 		
 		
 	}

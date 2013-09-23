@@ -7,9 +7,11 @@ public class UIPanelController : MonoBehaviour {
 	
 	protected Vector3 showPosition = new Vector3(0,0,0);
 	
-	protected bool currentlyHidden = false;
+	public bool currentlyHidden = false;
 	
-	protected float lerpingTime = 2;
+	private bool isCurrentlyLerping = false;
+	
+	protected float lerpingTime = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -23,13 +25,18 @@ public class UIPanelController : MonoBehaviour {
 	
 	public void ChangeHideState() {
 		
-		if(currentlyHidden)
-		{			
-			ShowPanel();
-		}
-		else
+		if(!isCurrentlyLerping)
 		{
-			HidePanel();
+			if(currentlyHidden)
+			{			
+				ShowPanel();
+			}
+			else
+			{
+				HidePanel();
+			}
+			
+			isCurrentlyLerping = true;
 		}
 		
 	}
@@ -88,9 +95,8 @@ public class UIPanelController : MonoBehaviour {
 	
 	public void TweenFinished()
 	{
-		print ("Tween FInished");
 		currentlyHidden = !currentlyHidden;
-		
+		isCurrentlyLerping = false;
 		Destroy(gameObject.GetComponent<UITweener>());
 	}
 }

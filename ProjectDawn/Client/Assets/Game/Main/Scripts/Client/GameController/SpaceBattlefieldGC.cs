@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SpaceBattlefieldGC : uLink.MonoBehaviour {
 	
@@ -54,7 +55,7 @@ public class SpaceBattlefieldGC : uLink.MonoBehaviour {
 		{
 			if(currentGameState == GameState.STARTING) //We've been told to enter setup and game is over so we need to spawn
 			{
-				cinematicCamera.camera.rect = new Rect(0.51f,0.398f,0.478f,0.485f);
+				cinematicCamera.camera.rect = new Rect(0.34f,0.548f,0.32f,0.34f);
 				cinematicCamera.SetActive(true);
 				UI.ShowLobby();
 				print ("Showing Lobby");
@@ -67,8 +68,7 @@ public class SpaceBattlefieldGC : uLink.MonoBehaviour {
 			{
 				if(currentPlayerState == PlayerState.SETUP)
 				{
-					cinematicCamera.camera.rect = new Rect(0,0,0,0);
-					cinematicCamera.SetActive(false);
+					
 					
 					print("Moving from lobby to results");
 					// Game over show results from lobby
@@ -116,6 +116,10 @@ public class SpaceBattlefieldGC : uLink.MonoBehaviour {
 		}
 		else if (_SwitchedState == GameState.RESULTS) // we must have ended
 		{
+			
+			cinematicCamera.camera.rect = new Rect(0,0,1,1);
+			cinematicCamera.SetActive(true);
+			
 			currentGameState = _SwitchedState;
 			
 			UI.ShowResults();
@@ -168,6 +172,37 @@ public class SpaceBattlefieldGC : uLink.MonoBehaviour {
 		currentTimer -= Time.deltaTime;
 	}
 	
+	public void JoinTeam (byte _Team)
+	{
+		switch(_Team)
+		{
+			case 1:
+			
+				networkView.RPC("AddToRed",uLink.RPCMode.Server);
+				
+			break;
+			
+			case 2:
+				
+				networkView.RPC("AddToBlue",uLink.RPCMode.Server);
+				
+			break;
+			
+			case 3:
+				
+				networkView.RPC("AddToGreen",uLink.RPCMode.Server);
+				
+			break;
+
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
 	[RPC]
 	void ServerStateChanged (byte _ServerState,uLink.NetworkMessageInfo _Info)
 	{
@@ -193,20 +228,58 @@ public class SpaceBattlefieldGC : uLink.MonoBehaviour {
 		
 		
 	}
+
+	
+	[RPC]
+	void UpdatePlayerList(byte _CurrentTeam,string _Name,byte _LastTeam)
+	{
+		print ("Player " + _Name + " moved from " + _LastTeam + " to " + _CurrentTeam);
+		UI.UpdatePlayerList(_CurrentTeam,_Name,_LastTeam);
+	}
+	
+	
+	[RPC]
+	void ServerTeams(int _rubbish,string[] _UnAssignedPlayers,string[] _RedPlayers,string[] _BluePlayers,string[] _GreenPlayers)
+	{
+		UI.ClearTeams();
+		
+		
+		foreach(string playa in _UnAssignedPlayers)
+		{
+			UI.SetPlayerToTeam(playa,0);
+		}
+		foreach(string playa in _RedPlayers)
+		{
+			UI.SetPlayerToTeam(playa,1);
+		}
+		foreach(string playa in _BluePlayers)
+		{
+			UI.SetPlayerToTeam(playa,2);
+		}
+		foreach(string playa in _GreenPlayers)
+		{
+			UI.SetPlayerToTeam(playa,3);
+		}
+		
+		UI.OrderPlayerList();
+	}
 	
 	
 	[RPC]
 	void ServerStatus (short _ServerState,float _CurrentTime,short _StartingTime,short _RoundTime,short _ResultsTime,uLink.NetworkMessageInfo _Info)
 	{
 		//print (_info.timestamp);
-		
-		currentTimer = (double)_CurrentTime + (uLink.Network.time - _Info.timestamp);
 	
-		print ("Timer is set to " + currentTimer);
+		currentTimer = (double)_CurrentTime + (uLink.Network.time - _Info.timestamp);
+		
+		//print ("Got unassigned players " + _UnassignedPlayers[0]);
+	
 		
 		startingTime = _StartingTime;
 		roundTime = _RoundTime;
 		resultsTime = _ResultsTime;
+		
+		UI._LobbyPanel.SetStartingInformation(_StartingTime,_RoundTime,_ResultsTime);
 		
 		currentGameState = (GameState)_ServerState;
 	

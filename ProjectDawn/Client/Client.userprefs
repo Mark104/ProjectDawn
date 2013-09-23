@@ -1,14 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Main\Scripts\Client\UI\Panels\Game\ResultsPanel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Main\Scripts\Client\Sessions\AccountSession.cs">
     <Files>
-      <File FileName="..\Server\Assets\Game\Main\Scripts\Server\Network\MainServerController.cs" Line="279" Column="6" />
-      <File FileName="Assets\Game\Main\Scripts\Client\GameController\SpaceBattlefieldGC.cs" Line="121" Column="21" />
-      <File FileName="Assets\Game\Main\Scripts\Client\UI\Managers\GameUIManager.cs" Line="39" Column="25" />
-      <File FileName="Assets\Game\Main\Scripts\Client\UI\Panels\Game\GameUIPanel.cs" Line="7" Column="27" />
-      <File FileName="Assets\Game\Main\Scripts\Client\Utility\tempServerJoin.cs" Line="27" Column="70" />
-      <File FileName="Assets\Game\Main\Scripts\Client\UI\Panels\Game\ResultsPanel.cs" Line="9" Column="26" />
-      <File FileName="Assets\Game\Main\Scripts\Client\UI\Panels\Game\LobbyPanel.cs" Line="7" Column="17" />
+      <File FileName="Assets\Game\Main\Scripts\Client\Sessions\AccountSession.cs" Line="67" Column="16" />
+      <File FileName="Assets\Game\Main\Scripts\Client\GameController\SpaceBattlefieldGC.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Main\Scripts\Client\UI\Panels\FrontEndUI\GameModePanel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Main\Scripts\Client\UnPackers\ShipUnpacker.cs" Line="59" Column="4" />
+      <File FileName="Assets\Game\Main\Scripts\Client\UnPackers\Source\Unpacker.cs" Line="18" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

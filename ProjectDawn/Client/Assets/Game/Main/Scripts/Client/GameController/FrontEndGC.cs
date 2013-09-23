@@ -27,10 +27,14 @@ public class FrontEndGC : GameController {
 	public Transform cameraPosition2; // Internal conflict
 	public Transform cameraPosition3; // Planet assault
 	
+	public Transform hangerView;
+	
 	public GameObject ServerListingElement;
 	public Transform ServerListing;
+	public Transform HangerNode;
 	
 	private Transform LerpToPosition;
+	
 	
 	private Dictionary<string,ServerListingElement> ServerList = new Dictionary<string, ServerListingElement>();
 	
@@ -44,6 +48,16 @@ public class FrontEndGC : GameController {
 	}; 
 	
 	GameType currentGameType;
+	
+	enum ReadyStatus
+	{
+		READY,
+		EQUIPING,
+		WAITING
+		
+	}
+	
+	ReadyStatus currentReadyStatus;
 	
 	int pendingGameType;
 	
@@ -68,6 +82,33 @@ public class FrontEndGC : GameController {
 		
 	}
 	
+	public void EnterHangerMode (bool _IsHangerMode)
+	{
+		
+		//UIManager._BottomPanel.ChangeHideState();
+		UIManager._TopPanel.ChangeHideState();
+		UIManager._GameModePanel.ChangeHideState();
+		
+		
+		if(_IsHangerMode)
+		{
+			
+			currentReadyStatus = ReadyStatus.EQUIPING;
+			curentlyLerping = false;
+			Camera.main.transform.position = hangerView.position;
+			Camera.main.transform.rotation = hangerView.rotation;
+			Camera.main.transform.parent = HangerNode;
+			
+		}
+		else
+		{
+			currentReadyStatus = ReadyStatus.READY;
+			Camera.main.transform.position = cameraPosition1.position;
+			Camera.main.transform.rotation = cameraPosition1.rotation;
+			Camera.main.transform.parent = null;
+		}
+	}
+	
 	public void Login (string _Username, string _Password)
 	{
 		AS.Login(_Username,_Password);
@@ -81,7 +122,7 @@ public class FrontEndGC : GameController {
 			curentlyLerping = true;
 			pendingGameType = 0;
 			UIManager._GameModePanel.ChangeHideState();
-			
+			UIManager._ShowHangerPanel.ChangeHideState();
 			
 		}
 		else if (_GameType == 1) // Internal conflict selected
@@ -201,13 +242,18 @@ public class FrontEndGC : GameController {
 			
 			tmpObj.AddComponent<uLink.NetworkView>().SetManualViewID(1);
 			
+			currentReadyStatus = ReadyStatus.READY;
+			
 			StartLoginPhase();
 		
 		}
 		else
 		{
 			//If we already have a session, we must already be loged in!
-			AS.GetComponent<AccountSession>()._FrontEndGC = this;	
+			AS.GetComponent<AccountSession>()._FrontEndGC = this;
+			
+			currentReadyStatus = ReadyStatus.READY;
+			
 			SkipLoginPhase();
 		}
 		
@@ -231,13 +277,24 @@ public class FrontEndGC : GameController {
 	// Update is called once per frame
 	void Update () {
 		
+		if(currentReadyStatus == ReadyStatus.EQUIPING)
+		{
+			if(Input.GetMouseButton(0))
+			{
+				
+				HangerNode.Rotate(0,(Input.GetAxis("Horizontal") * 10) * Time.deltaTime,0);	
+				
+			}
+			
+		}
+		
 		if(curentlyLerping)
 		{
 		
 			float positionalLerp =  0.1f / Vector3.Distance(Camera.main.transform.position,cameraPosition1.position);
 			
-			Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position,cameraPosition1.position,Time.deltaTime);
-			Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation,cameraPosition1.rotation,Time.deltaTime);												
+			Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position,cameraPosition1.position,Time.deltaTime * 4);
+			Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation,cameraPosition1.rotation,Time.deltaTime * 4);												
 			
 			if (positionalLerp >= 1)
 			{
