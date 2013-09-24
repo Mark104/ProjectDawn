@@ -16,6 +16,8 @@ public class AccountSession : uLink.MonoBehaviour {
 	int serverPort;
 	
 	Account myAccount;
+	
+	public uLink.BitStream shipCode;
 
 	// Use this for initialization
 	void Start () {
@@ -69,9 +71,30 @@ public class AccountSession : uLink.MonoBehaviour {
 		char minchar = (char)min;
 		char maxchar = (char)max;
 		
-		print ("a 0 char is " + maxchar + " a max char is " +  maxchar);
+		uLink.BitStream _ShipBitStream = new uLink.BitStream(true);
 		
-		Lobby.RPC("SetPlayerShip",LobbyPeer.lobby,"T0-H1-W0-W0-M0-E0-N0");
+		_ShipBitStream.WriteByte(0); //TYPE
+		_ShipBitStream.WriteInt16(1); //BASICFIGHTER
+		
+		_ShipBitStream.WriteByte(1); //HULL
+		_ShipBitStream.WriteInt16(1); //HORNET
+		
+		_ShipBitStream.WriteByte(2); //HARDPOINTS
+		_ShipBitStream.WriteInt16(1); //GATTLING GUN
+		
+		_ShipBitStream.WriteByte(2); //HARDPOINTS
+		_ShipBitStream.WriteInt16(1); //GATTLING GUN
+		
+		_ShipBitStream.WriteByte(3); //MODULES
+		_ShipBitStream.WriteInt16(0); //UNGUIDED MISSILE POD
+		
+		_ShipBitStream.WriteByte(3); //MODULES
+		_ShipBitStream.WriteInt16(0); //UNGUIDED MISSILE POD
+		
+		_ShipBitStream.WriteByte(4); //ENGINE
+		_ShipBitStream.WriteInt16(1); //STANDARD ENGINE
+		
+		Lobby.RPC("SetPlayerShip",LobbyPeer.lobby,_ShipBitStream);
 		
 		Lobby.RPC("RequestPlayerShip",LobbyPeer.lobby);
 		
@@ -127,10 +150,46 @@ public class AccountSession : uLink.MonoBehaviour {
 	
 	
 	[RPC]
-	void ReturnPlayerShip(string _ShipCode)
+	void ReturnPlayerShip(uLink.BitStream _ShipCode)
 	{
-		print (_ShipCode);
+		uLink.BitStream tempSteam = _ShipCode.ReadBitStream();
+		
+		print("Loading Ship with " + tempSteam._data.Length);
+		
+		GameObject tmpObj =	Instantiate(Resources.Load("Unpackers/Unpacker")) as GameObject;
+		
+		
+		tmpObj.GetComponent<BasicFighterUnpacker>().Unpack(tempSteam,2);
 	
+		/*
+		
+		bool expectingKey = true;
+
+		for(int i = 0;i < 1000;i++)
+		{
+			if(_StoredShipCode.bytesRemaining == 0)
+			{	
+				print ("Read finished");
+				break;
+			}
+			
+			if(expectingKey)
+			{
+				byte key = _StoredShipCode.ReadByte();
+				expectingKey = false;
+				
+				print ("Key is " + key.ToString());
+			}
+			else
+			{
+				short val = _StoredShipCode.ReadInt16();
+				expectingKey = true;
+				
+				print ("Value is " + val);
+			}
+		}
+		
+		*/
 	}
 	
 	void uLink_OnConnectedToServer()

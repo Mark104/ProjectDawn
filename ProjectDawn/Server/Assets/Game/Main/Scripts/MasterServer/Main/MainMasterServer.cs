@@ -140,18 +140,19 @@ public class MainMasterServer : uLink.MonoBehaviour {
 		}
 	}
 	
-	
 	[RPC]
-	public void SetPlayerShip(string _Ship,LobbyMessageInfo _Info)
-	{
+	public void SetPlayerShip(uLink.BitStream _Ship,LobbyMessageInfo _Info)
+	{	
+		
+		uLink.BitStream _ShipData = _Ship.ReadBitStream();
+		
 		AccountID tmpAccountId = AccountManager.Master.GetLoggedInAccount(_Info.sender).id;
 		
-		var setRequest = shipBucket.Set(tmpAccountId.ToString(), _Ship, Encoding.Json);
-	
-		print ("Updating " + tmpAccountId + " with " + _Ship);
+		var setRequest = shipBucket.Set(tmpAccountId.ToString(),_ShipData._data,Encoding.Bitstream);
+		
+		print ("Updating " + tmpAccountId + " with " + _ShipData._data.Length);
 	}
 
-	
 	[RPC]
 	public IEnumerator  RequestPlayerShip(LobbyMessageInfo _Info)
 	{
@@ -163,23 +164,18 @@ public class MainMasterServer : uLink.MonoBehaviour {
 
 	    if (getRequest.hasFailed)
 	    {
-	    	print ("Get Fail");
-			
-			string tempString = "";
-			
-			Lobby.RPC("ReturnPlayerShip",_Info.sender,tempString);
-		
-			
 			yield break;
     	}
 		
-		print ("Print got " + getRequest.GetValue<string>());
+		byte[] byteArray = getRequest.GetValue<byte[]>();
+	
+		uLink.BitStream tmperStream = new uLink.BitStream(byteArray,true);
 		
-		Lobby.RPC("ReturnPlayerShip",_Info.sender,getRequest.GetValue<string>());
+		print ("Got stream" + tmperStream._data.Length);
+		
+		Lobby.RPC("ReturnPlayerShip",_Info.sender,tmperStream);
 			
 	}
-	
-	
 	
 	[RPC]
 	public void RequestLoginInfo(LobbyMessageInfo info)

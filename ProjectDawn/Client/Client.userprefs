@@ -1,12 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Main\Scripts\Client\Sessions\AccountSession.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Main\Scripts\Client\UnPackers\BasicFighterUnpacker.cs">
     <Files>
-      <File FileName="Assets\Game\Main\Scripts\Client\Sessions\AccountSession.cs" Line="67" Column="16" />
-      <File FileName="Assets\Game\Main\Scripts\Client\GameController\SpaceBattlefieldGC.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game\Main\Scripts\Client\UI\Panels\FrontEndUI\GameModePanel.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game\Main\Scripts\Client\UnPackers\ShipUnpacker.cs" Line="59" Column="4" />
-      <File FileName="Assets\Game\Main\Scripts\Client\UnPackers\Source\Unpacker.cs" Line="18" Column="1" />
+      <File FileName="Assets\Game\Main\Scripts\Client\GameController\FrontEndGC.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Main\Scripts\Client\Sessions\AccountSession.cs" Line="93" Column="3" />
+      <File FileName="Assets\Game\Main\Scripts\Client\UnPackers\BasicFighterUnpacker.cs" Line="65" Column="6" />
+      <File FileName="Assets\Game\Main\Scripts\Client\Weapons\Guns\BasicCannon.cs" Line="5" Column="36" />
+      <File FileName="Assets\Game\Main\Scripts\Client\Weapons\Source\Armament.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Main\Scripts\Client\UnPackers\Source\Unpacker.cs" Line="19" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

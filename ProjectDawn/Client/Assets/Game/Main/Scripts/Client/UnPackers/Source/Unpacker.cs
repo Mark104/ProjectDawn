@@ -10,11 +10,16 @@ public class Unpacker : MonoBehaviour {
 		HANGER
 	}
 	
-	TYPE unPackerType;
+	protected	TYPE unPackerType;
 	
-	public virtual void Unpack (string _Value,int _UnPackerType)
+	public virtual GameObject Unpack (uLink.BitStream _Value,int _UnPackerType)
 	{
-		unPackerType = (TYPE)_UnPackerType;
+		GameObject finalGO = this.gameObject;
 		
+		
+		
+			unPackerType = (TYPE)_UnPackerType;
+		
+		return finalGO;
 	}
 }

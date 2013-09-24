@@ -81,11 +81,8 @@
      <Compile Include="Assets\Game\Main\Scripts\Client\UIEventSenders\FrontEndUI\SpaceBattlefield.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\UIEventSenders\Game\EnterGame.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\UIEventSenders\Game\JoinTeam.cs" />
-     <Compile Include="Assets\Game\Main\Scripts\Client\UnPackers\ShipUnpacker.cs" />
-     <Compile Include="Assets\Game\Main\Scripts\Client\UnPackers\Ship_Unpacker.cs" />
-     <Compile Include="Assets\Game\Main\Scripts\Client\UnPackers\Source\Default_Unpacker.cs" />
+     <Compile Include="Assets\Game\Main\Scripts\Client\UnPackers\BasicFighterUnpacker.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\UnPackers\Source\Unpacker.cs" />
-     <Compile Include="Assets\Game\Main\Scripts\Client\UnPackers\Source\UnpackerSelector.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Utility\LoadingText.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Utility\UISpinner.cs" />
      <Compile Include="Assets\Game\Main\Scripts\Client\Utility\tempServerJoin.cs" />
@@ -197,7 +194,6 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UITiledSprite.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
-     <Compile Include="Assets\Resources\Unpackers\OwnerUnPacker.cs" />
      <Compile Include="Assets\Scripts\ShipController.cs" />
      <Compile Include="Assets\Temp\Targeter.cs" />
      <Compile Include="Assets\TestScripts\SimpleCamera.cs" />
